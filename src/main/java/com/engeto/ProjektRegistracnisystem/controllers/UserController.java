@@ -64,7 +64,7 @@ public class UserController {
         try {
             int result = userService.deleteUserByID(ID);
             if (result == 0) {
-                return new ResponseEntity<>("User with ID " + ID + " could not be found.", HttpStatus.OK);
+                return new ResponseEntity<>("User with ID " + ID + " could not be found.", HttpStatus.NOT_FOUND);
             }
             return new ResponseEntity<>("User was deleted successfully.", HttpStatus.OK);
         } catch (Exception e) {
