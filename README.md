@@ -87,9 +87,9 @@ Jméno sloupce	  - [ ] -      Typ	       - [ ] -          Další info
 
 ID	            - [ ] -      Long	     - [ ] -        PrimaryKey, Unique, NotNull, Autoincrement
 
-Name	          - [ ] -      Varchar    - [ ] -       NotNul
+Name	          - [ ] -      Varchar    - [ ] -       NotNull
 
-Surname	        - [ ] -     Varchar	  
+Surname	        - [ ] -     Varchar	  - [ ] -  NotNull
 
 PersonID	      - [ ] -      Varchar	   - [ ] -      Unique, NotNull
 
