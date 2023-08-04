@@ -58,13 +58,12 @@ public class UserService implements UserRepository {
     }
 
     @Override
-    public String updateUser(Long ID, String name, String surname) {
-        String sql = "UPDATE Persons SET name = ?, surname = ? WHERE ID = ?";
-        int rowsUpdated = jdbcTemplate.update(sql, name, surname, ID);
-        if (rowsUpdated > 0) {
-            return "User was successfully updated.";
+    public int updateUser(Object updatedUser) {
+        if (updatedUser instanceof User user) {
+            return jdbcTemplate.update("UPDATE Persons SET name = ?, surname = ? WHERE ID = ?",
+                    user.getName(), user.getSurname(), user.getID());
         } else {
-            return "User could not be updated.";
+            return Integer.parseInt(null);
         }
     }
 

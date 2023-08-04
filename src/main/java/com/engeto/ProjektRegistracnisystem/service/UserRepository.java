@@ -15,7 +15,7 @@ public interface UserRepository {
 
     List<User> getAllUsersUnDetailedInfos();
 
-    String updateUser(Long ID, String name, String surname);
+    public int updateUser(Object user);
 
     int deleteUserByID(Long ID);
 }

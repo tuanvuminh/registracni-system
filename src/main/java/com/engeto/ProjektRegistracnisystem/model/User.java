@@ -26,7 +26,7 @@ public class User {
         if (this.personID.length() == 12) return true;
         return false;
     }
-    @JsonView(DisplaysJSON.Public.class)
+
     public Long getID() {
         return ID;
     }
@@ -35,7 +35,6 @@ public class User {
         this.ID = ID;
     }
 
-    @JsonView(DisplaysJSON.Public.class)
     public String getPersonID() {
         return personID;
     }
@@ -44,7 +43,6 @@ public class User {
         this.personID = personID;
     }
 
-    @JsonView(DisplaysJSON.Public.class)
     public String getName() {
         return name;
     }
@@ -53,7 +51,6 @@ public class User {
         this.name = name;
     }
 
-    @JsonView(DisplaysJSON.Public.class)
     public String getSurname() {
         return surname;
     }

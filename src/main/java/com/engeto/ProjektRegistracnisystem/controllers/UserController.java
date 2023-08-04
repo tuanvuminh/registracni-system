@@ -47,14 +47,15 @@ public class UserController {
     }
 
     @PutMapping("/user/{ID}")
-    public ResponseEntity<String> updateUsersInfo(@PathVariable Long ID,
-                                                  @RequestParam String newName,
-                                                  @RequestParam String newSurname) {
-        String result = userService.updateUser(ID, newName, newSurname);
-        if (result.startsWith("Updated")) {
-            return ResponseEntity.ok(result);
+    public ResponseEntity<String> updateUser(@PathVariable Long ID, @RequestBody User user) {
+        Object updatedUser = userService.getUsersDetailedInfos(ID);
+        if (updatedUser instanceof User userToUpdate) {
+            userToUpdate.setName(user.getName());
+            userToUpdate.setSurname(user.getSurname());
+            userService.updateUser(userToUpdate);
+            return new ResponseEntity<>("User was updated successfully.", HttpStatus.OK);
         } else {
-            return ResponseEntity.notFound().build();
+            return new ResponseEntity<>("Cannot find user with ID = " + ID, HttpStatus.NOT_FOUND);
         }
     }
 
@@ -63,11 +64,11 @@ public class UserController {
         try {
             int result = userService.deleteUserByID(ID);
             if (result == 0) {
-                return new ResponseEntity<>("Cannot find user with ID = " + ID, HttpStatus.OK);
+                return new ResponseEntity<>("User with ID " + ID + " could not be found.", HttpStatus.OK);
             }
             return new ResponseEntity<>("User was deleted successfully.", HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>("Cannot delete user.", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("User with ID " + ID + " could not be deleted.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }
