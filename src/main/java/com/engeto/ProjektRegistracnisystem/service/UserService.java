@@ -53,8 +53,8 @@ public class UserService implements UserRepository {
     @Override
     public List<User> getAllUsersUnDetailedInfo() {
         String sql = "SELECT ID, name, surname from Persons";
-        List<User> people = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(User.class));
-        return new ArrayList<>(people);
+        List<User> allUsers = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(User.class));
+        return new ArrayList<>(allUsers);
     }
 
     @Override
