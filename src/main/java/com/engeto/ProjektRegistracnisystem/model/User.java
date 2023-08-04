@@ -2,7 +2,7 @@ package com.engeto.ProjektRegistracnisystem.model;
 
 import java.util.Arrays;
 
-public class Person {
+public class User {
     private static int idCounter = 1;
     private Long ID = Long.valueOf(idCounter++);
     private String name;
@@ -10,13 +10,13 @@ public class Person {
     private String personID;
     private byte[] uuid;
 
-    public Person(String name, String surname, String personID) {
+    public User(String name, String surname, String personID) {
         this.name = name;
         this.surname = surname;
         this.personID = personID;
     }
 
-    public Person() {
+    public User() {
     }
 
     public boolean isPersonIDValid() {
@@ -58,7 +58,7 @@ public class Person {
 
     @Override
     public String toString() {
-        return "Person{" +
+        return "User{" +
                 "ID=" + ID +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +

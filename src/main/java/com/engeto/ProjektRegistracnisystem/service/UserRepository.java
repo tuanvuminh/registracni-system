@@ -1,0 +1,23 @@
+package com.engeto.ProjektRegistracnisystem.service;
+
+import com.engeto.ProjektRegistracnisystem.model.User;
+import java.util.List;
+
+public interface UserRepository {
+
+    int createUser(User user);
+
+    User getUsersDetailedInfo(Long ID);
+
+    User getUsersUnDetailedInfo(Long ID);
+
+    List<User> getAllUsersDetailedInfo();
+
+    List<User> getAllUsersUnDetailedInfo();
+
+    public int updateUser(Object updatedUser);
+
+    int deleteUserByID(Long ID);
+}
+
+
