@@ -1,11 +1,8 @@
 package com.engeto.ProjektRegistracnisystem.model;
 
-import com.fasterxml.jackson.annotation.JsonView;
-import org.springframework.data.annotation.Id;
-import javax.annotation.processing.Generated;
 import java.util.Arrays;
 
-public class User {
+public class Person {
     private static int idCounter = 1;
     private Long ID = Long.valueOf(idCounter++);
     private String name;
@@ -13,13 +10,13 @@ public class User {
     private String personID;
     private byte[] uuid;
 
-    public User(String name, String surname, String personID) {
+    public Person(String name, String surname, String personID) {
         this.name = name;
         this.surname = surname;
         this.personID = personID;
     }
 
-    public User() {
+    public Person() {
     }
 
     public boolean isPersonIDValid() {
@@ -61,7 +58,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "Person{" +
                 "ID=" + ID +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +

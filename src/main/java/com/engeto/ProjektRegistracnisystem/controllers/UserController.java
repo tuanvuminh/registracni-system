@@ -1,7 +1,7 @@
 package com.engeto.ProjektRegistracnisystem.controllers;
 
-import com.engeto.ProjektRegistracnisystem.model.User;
-import com.engeto.ProjektRegistracnisystem.service.UserService;
+import com.engeto.ProjektRegistracnisystem.model.Person;
+import com.engeto.ProjektRegistracnisystem.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,62 +13,62 @@ import java.util.List;
 @RequestMapping("/api/v1")
 public class UserController {
     @Autowired
-    private UserService userService;
+    private PersonService personService;
 
     @GetMapping
-    public String test() {
-        return "Hello!";
+    public String mainPage() {
+        return "Welcome to Genesis Resources!";
     }
 
     @GetMapping("/users")
-    public ResponseEntity<List<User>> getAllUsersInfo() {
-        List<User> users = userService.getAllUsersDetailedInfos();
-        return ResponseEntity.ok(users);
+    public ResponseEntity<List<Person>> getAllUsersInfo() {
+        List<Person> people = personService.getAllUsersDetailedInfos();
+        return ResponseEntity.ok(people);
     }
 
     @GetMapping("/user/{ID}")
-    public ResponseEntity<User> getUserById(@PathVariable Long ID) {
-        User user = userService.getUsersDetailedInfos(ID);
-        if (user != null) {
-            return ResponseEntity.ok(user);
+    public ResponseEntity<Person> getUserById(@PathVariable Long ID) {
+        Person person = personService.getUsersDetailedInfos(ID);
+        if (person != null) {
+            return ResponseEntity.ok(person);
         } else {
             return ResponseEntity.notFound().build();
         }
     }
 
-    @PostMapping("/user")
-    public ResponseEntity<String> addNewUser(@RequestBody User user) {
+    @PostMapping("/person")
+    public ResponseEntity<String> addNewUser(@RequestBody Person person) {
         try {
-            userService.createUser(new User(user.getName(), user.getSurname(), user.getPersonID()));
-            return new ResponseEntity<>("User was created successfully.", HttpStatus.CREATED);
+            personService.createUser(new Person(person.getName(), person.getSurname(), person.getPersonID()));
+            return new ResponseEntity<>("Person was added successfully.", HttpStatus.CREATED);
         } catch (Exception e) {
-            return new ResponseEntity<>("User could not be created", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("Person could not be added", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    @PutMapping("/user/{ID}")
-    public ResponseEntity<String> updateUser(@PathVariable Long ID, @RequestBody User user) {
-        Object updatedUser = userService.getUsersDetailedInfos(ID);
-        if (updatedUser instanceof User userToUpdate) {
-            userToUpdate.setName(user.getName());
-            userToUpdate.setSurname(user.getSurname());
-            userService.updateUser(userToUpdate);
-            return new ResponseEntity<>("User was updated successfully.", HttpStatus.OK);
+    @PutMapping("/person/{ID}")
+    public ResponseEntity<String> updateUser(@PathVariable Long ID, @RequestBody Person person) {
+        Object updatedUser = personService.getUsersDetailedInfos(ID);
+        if (updatedUser instanceof Person personToUpdate) {
+            personToUpdate.setName(person.getName());
+            personToUpdate.setSurname(person.getSurname());
+            personService.updateUser(personToUpdate);
+            return new ResponseEntity<>("Person was updated successfully.", HttpStatus.OK);
         } else {
-            return new ResponseEntity<>("Cannot find user with ID = " + ID, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Cannot find person with ID = " + ID, HttpStatus.NOT_FOUND);
         }
     }
 
     @DeleteMapping("/user/{ID}")
     public ResponseEntity<String> deleteUserById(@PathVariable Long ID) {
         try {
-            int result = userService.deleteUserByID(ID);
+            int result = personService.deleteUserByID(ID);
             if (result == 0) {
-                return new ResponseEntity<>("User with ID " + ID + " could not be found.", HttpStatus.OK);
+                return new ResponseEntity<>("Person with ID " + ID + " could not be found.", HttpStatus.OK);
             }
-            return new ResponseEntity<>("User was deleted successfully.", HttpStatus.OK);
+            return new ResponseEntity<>("Person was deleted successfully.", HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>("User with ID " + ID + " could not be deleted.", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("Person with ID " + ID + " could not be deleted.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

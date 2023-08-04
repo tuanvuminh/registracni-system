@@ -1,6 +1,6 @@
 package com.engeto.ProjektRegistracnisystem.service;
 
-import com.engeto.ProjektRegistracnisystem.model.User;
+import com.engeto.ProjektRegistracnisystem.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -11,64 +11,64 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class UserService implements UserRepository {
+public class PersonService implements PersonRepository {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public int createUser(User user) {
+    public int createPerson(Person person) {
         return jdbcTemplate.update("INSERT INTO Persons (name, surname, personID, uuid) VALUES(?,?,?,UUID_TO_BIN(UUID()))",
-                user.getName(), user.getSurname(), user.getPersonID());
+                person.getName(), person.getSurname(), person.getPersonID());
     }
 
     @Override
-    public User getUsersDetailedInfos(Long ID) {
+    public Person getPersonsDetailedInfo(Long ID) {
         String sql = "SELECT * FROM Persons WHERE ID = ?";
         return jdbcTemplate.queryForObject(sql, new Object[]{ID}, userRowMapper);
     }
 
-    private final RowMapper<User> userRowMapper = (rs, rowNum) -> {
-        User user = new User();
-        user.setName(rs.getString("name"));
-        user.setSurname(rs.getString("surname"));
-        user.setPersonID(String.valueOf(rs.getInt("personID")));
-        return user;
+    private final RowMapper<Person> userRowMapper = (rs, rowNum) -> {
+        Person person = new Person();
+        person.setName(rs.getString("name"));
+        person.setSurname(rs.getString("surname"));
+        person.setPersonID(String.valueOf(rs.getInt("personID")));
+        return person;
     };
 
 
     @Override
-    public User getUsersUnDetailedInfos(Long ID) {
+    public Person getPersonsUnDetailedInfo(Long ID) {
         String sql = "SELECT ID, name, Surname FROM Persons WHERE ID=?";
-        User user = jdbcTemplate.queryForObject(sql, new Object[]{ID}, new BeanPropertyRowMapper<>(User.class));
-        return user;
+        Person person = jdbcTemplate.queryForObject(sql, new Object[]{ID}, new BeanPropertyRowMapper<>(Person.class));
+        return person;
     }
 
     @Override
-    public List<User> getAllUsersDetailedInfos() {
+    public List<Person> getAllPersonsDetailedInfo() {
         String sql = "SELECT * from Persons";
         return jdbcTemplate.query(sql, new UserRowMapper());
     }
 
     @Override
-    public List<User> getAllUsersUnDetailedInfos() {
+    public List<Person> getAllPersonsUnDetailedInfo() {
         String sql = "SELECT ID, name, surname from Persons";
-        List<User> users = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(User.class));
-        return new ArrayList<>(users);
+        List<Person> people = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Person.class));
+        return new ArrayList<>(people);
     }
 
     @Override
-    public int updateUser(Object updatedUser) {
-        if (updatedUser instanceof User user) {
+    public int updatePerson(Object updatedPerson) {
+        if (updatedPerson instanceof Person person) {
             return jdbcTemplate.update("UPDATE Persons SET name = ?, surname = ? WHERE ID = ?",
-                    user.getName(), user.getSurname(), user.getID());
+                    person.getName(), person.getSurname(), person.getID());
         } else {
             return Integer.parseInt(null);
         }
     }
 
     @Override
-    public int deleteUserByID(Long ID) {
+    public int deletePersonByID(Long ID) {
         return jdbcTemplate.update("DELETE FROM Persons WHERE ID=?", ID);
     }
 
