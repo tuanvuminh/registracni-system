@@ -22,13 +22,13 @@ public class UserController {
 
     @GetMapping("/users")
     public ResponseEntity<List<Person>> getAllUsersInfo() {
-        List<Person> people = personService.getAllUsersDetailedInfos();
+        List<Person> people = personService.getAllPersonsDetailedInfo();
         return ResponseEntity.ok(people);
     }
 
     @GetMapping("/user/{ID}")
     public ResponseEntity<Person> getUserById(@PathVariable Long ID) {
-        Person person = personService.getUsersDetailedInfos(ID);
+        Person person = personService.getPersonsDetailedInfo(ID);
         if (person != null) {
             return ResponseEntity.ok(person);
         } else {
@@ -39,7 +39,7 @@ public class UserController {
     @PostMapping("/person")
     public ResponseEntity<String> addNewUser(@RequestBody Person person) {
         try {
-            personService.createUser(new Person(person.getName(), person.getSurname(), person.getPersonID()));
+            personService.createPerson(new Person(person.getName(), person.getSurname(), person.getPersonID()));
             return new ResponseEntity<>("Person was added successfully.", HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>("Person could not be added", HttpStatus.INTERNAL_SERVER_ERROR);
@@ -48,11 +48,11 @@ public class UserController {
 
     @PutMapping("/person/{ID}")
     public ResponseEntity<String> updateUser(@PathVariable Long ID, @RequestBody Person person) {
-        Object updatedUser = personService.getUsersDetailedInfos(ID);
+        Object updatedUser = personService.getPersonsDetailedInfo(ID);
         if (updatedUser instanceof Person personToUpdate) {
             personToUpdate.setName(person.getName());
             personToUpdate.setSurname(person.getSurname());
-            personService.updateUser(personToUpdate);
+            personService.updatePerson(personToUpdate);
             return new ResponseEntity<>("Person was updated successfully.", HttpStatus.OK);
         } else {
             return new ResponseEntity<>("Cannot find person with ID = " + ID, HttpStatus.NOT_FOUND);
@@ -62,7 +62,7 @@ public class UserController {
     @DeleteMapping("/user/{ID}")
     public ResponseEntity<String> deleteUserById(@PathVariable Long ID) {
         try {
-            int result = personService.deleteUserByID(ID);
+            int result = personService.deletePersonByID(ID);
             if (result == 0) {
                 return new ResponseEntity<>("Person with ID " + ID + " could not be found.", HttpStatus.OK);
             }
