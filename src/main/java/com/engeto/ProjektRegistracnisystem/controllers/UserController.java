@@ -38,13 +38,13 @@ public class UserController {
     @GetMapping("/user/{ID}")
     public ResponseEntity<String> getUserById(@PathVariable Long ID, @RequestParam(required = false) boolean detail) {
         User user = userService.getUsersDetailedInfo(ID);
-        StringBuilder resultTrue = new StringBuilder();
-        resultTrue.append("{id: ").append(user.getID()).append(", name: ").append(user.getName()).append(", surname: ").
+        StringBuilder userNonDetailed = new StringBuilder();
+        userNonDetailed.append("{id: ").append(user.getID()).append(", name: ").append(user.getName()).append(", surname: ").
                 append(user.getSurname()).append("}");
         if (detail) {
             return ResponseEntity.ok(user.toString());
         }
-        return ResponseEntity.ok(resultTrue.toString());
+        return ResponseEntity.ok(userNonDetailed.toString());
     }
 
 
@@ -53,9 +53,9 @@ public class UserController {
     @GetMapping("/users")
     public ResponseEntity<String> getAllUsersInfo() {
         List<User> allUsers = userService.getAllUsersDetailedInfo();
-        StringBuilder result = new StringBuilder();
+        StringBuilder listNonDetailed = new StringBuilder();
         for (User user : allUsers) {
-            result.append("List <{id: ").append(user.getID()).append
+            listNonDetailed.append("List <{id: ").append(user.getID()).append
                     (", name: ").append(user.getName()).append
                     (", surname: ").append(user.getSurname()).append("}>").append("\n");
         }
