@@ -36,7 +36,6 @@ public class UserService implements UserRepository {
         return user;
     };
 
-
     @Override
     public User getUsersUnDetailedInfo(Long ID) {
         String sql = "SELECT ID, name, Surname FROM Persons WHERE ID=?";
