@@ -66,17 +66,20 @@ public class User {
         this.uuid = uuid;
     }
 
-   // @Override
-    //public String toString() {
-   //     return "{" + "ID: " + ID + ", name: " + name + ", surname: " + surname + "}";
-    //}
+//  @Override
+//  public String toString() {
+//      return "{" + "ID: " + ID + ", name: " + name + ", surname: " + surname + "}";
+//  }
 
 
     @Override
     public String toString() {
         return "{" +
                 "ID: " + ID +
-                ", name: " + name + ", surname: " + surname + ", personID: " + personID + ", uuid: " + uuid +
+                ", name: " + name + 
+                ", surname: " + surname + 
+                ", personID: " + personID + 
+                ", uuid: " + uuid +
                 '}';
     }
 }
