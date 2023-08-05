@@ -68,18 +68,22 @@ public class User {
 
 //  @Override
 //  public String toString() {
-//      return "{" + "ID: " + ID + ", name: " + name + ", surname: " + surname + "}";
+//      return "{" + 
+//             "ID: " + ID + 
+//             ", name: " + name + 
+//             ", surname: " + surname + 
+//             "}";
 //  }
 
 
     @Override
     public String toString() {
         return "{" +
-                "ID: " + ID +
-                ", name: " + name + 
-                ", surname: " + surname + 
-                ", personID: " + personID + 
-                ", uuid: " + uuid +
-                '}';
+               "ID: " + ID +
+               ", name: " + name + 
+               ", surname: " + surname + 
+               ", personID: " + personID + 
+               ", uuid: " + uuid +
+               "}";
     }
 }
