@@ -1,14 +1,18 @@
 package com.engeto.ProjektRegistracnisystem.model;
 
+import org.springframework.data.relational.core.mapping.Table;
+
 import java.util.Arrays;
 
 public class User {
-    private static int idCounter = 1;
-    private Long ID = Long.valueOf(idCounter++);
+    private Long ID;
     private String name;
     private String surname;
     private String personID;
     private byte[] uuid;
+
+    public User() {
+    }
 
     public User(String name, String surname, String personID) {
         this.name = name;
@@ -16,12 +20,15 @@ public class User {
         this.personID = personID;
     }
 
-    public User() {
+    public User(Long ID, String name, String surname) {
+        this.ID = ID;
+        this.name = name;
+        this.surname = surname;
     }
 
-    public boolean isPersonIDValid() {
-        if (this.personID.length() == 12) return true;
-        return false;
+    public void nonDetailedInfo() {
+        this.personID = "";
+        this.uuid = null;
     }
 
     public Long getID() {
@@ -56,14 +63,25 @@ public class User {
         this.surname = surname;
     }
 
+    public byte[] getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(byte[] uuid) {
+        this.uuid = uuid;
+    }
+
+   // @Override
+    //public String toString() {
+   //     return "{" + "ID: " + ID + ", name: " + name + ", surname: " + surname + "}";
+    //}
+
+
     @Override
     public String toString() {
-        return "User{" +
-                "ID=" + ID +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", personID='" + personID + '\'' +
-                ", uuid=" + Arrays.toString(uuid) +
+        return "{" +
+                "ID: " + ID +
+                ", name: " + name + ", surname: " + surname + ", personID: " + personID + ", uuid: " + uuid +
                 '}';
     }
 }

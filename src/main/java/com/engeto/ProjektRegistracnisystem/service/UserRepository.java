@@ -9,11 +9,7 @@ public interface UserRepository {
 
     User getUsersDetailedInfo(Long ID);
 
-    User getUsersUnDetailedInfo(Long ID);
-
     List<User> getAllUsersDetailedInfo();
-
-    List<User> getAllUsersUnDetailedInfo();
 
     public int updateUser(Object updatedUser);
 

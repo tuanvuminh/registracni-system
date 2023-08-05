@@ -21,22 +21,7 @@ public class UserController {
         return "Welcome to Genesis Resources!";
     }
 
-    @GetMapping("/users")
-    public ResponseEntity<List<User>> getAllUsersInfo() {
-        List<User> allUsers = userService.getAllUsersDetailedInfo();
-        return ResponseEntity.ok(allUsers);
-    }
-
-    @GetMapping("/user/{ID}")
-    public ResponseEntity<User> getUserById(@PathVariable Long ID) {
-        User user = userService.getUsersDetailedInfo(ID);
-        if (user != null) {
-            return ResponseEntity.ok(user);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
-
+    // Založení nového uživatele
     @PostMapping("/user")
     public ResponseEntity<String> addNewUser(@RequestBody User user) {
         try {
@@ -47,6 +32,37 @@ public class UserController {
         }
     }
 
+    // Informace o uživateli GET api/v1/user/{ID}
+    // {id: string, name: string, surname: string }
+    // {id: string, name: string, surname: string, personID: string , uuid: string  }
+    @GetMapping("/user/{ID}")
+    public ResponseEntity<String> getUserById(@PathVariable Long ID, @RequestParam(required = false) boolean detail) {
+        User user = userService.getUsersDetailedInfo(ID);
+        StringBuilder resultTrue = new StringBuilder();
+        resultTrue.append("{id: ").append(user.getID()).append(", name: ").append(user.getName()).append(", surname: ").
+                append(user.getSurname()).append("}");
+        if (detail) {
+            return ResponseEntity.ok(user.toString());
+        }
+        return ResponseEntity.ok(resultTrue.toString());
+    }
+
+
+    // Informace o všech uživatelích GET api/v1/users
+    // List <{id: string, name: string, surname: string }>
+    @GetMapping("/users")
+    public ResponseEntity<String> getAllUsersInfo() {
+        List<User> allUsers = userService.getAllUsersDetailedInfo();
+        StringBuilder result = new StringBuilder();
+        for (User user : allUsers) {
+            result.append("List <{id: ").append(user.getID()).append
+                    (", name: ").append(user.getName()).append
+                    (", surname: ").append(user.getSurname()).append("}>").append("\n");
+        }
+        return ResponseEntity.ok(result.toString());
+    }
+
+    // // Upravení informací o uživateli
     @PutMapping("/user/{ID}")
     public ResponseEntity<String> updateUser(@PathVariable Long ID, @RequestBody User user) {
         Object updatedUser = userService.getUsersDetailedInfo(ID);
@@ -60,6 +76,7 @@ public class UserController {
         }
     }
 
+    // Smazání uživatele DELETE api/v1/user/{ID}
     @DeleteMapping("/user/{ID}")
     public ResponseEntity<String> deleteUserById(@PathVariable Long ID) {
         try {

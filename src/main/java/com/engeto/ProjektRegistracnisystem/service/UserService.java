@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
+import org.yaml.snakeyaml.events.Event;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,46 +17,40 @@ public class UserService implements UserRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    private final RowMapper<User> userRowMapper = (rs, rowNum) -> {
+        User user = new User();
+        user.setID(rs.getLong("ID"));
+        user.setName(rs.getString("name"));
+        user.setSurname(rs.getString("surname"));
+        user.setPersonID(rs.getString("personID"));
+        user.setUuid(rs.getBytes("uuid"));
+        return user;
+    };
+
+    // Založení nového uživatele
     @Override
     public int createUser(User user) {
         return jdbcTemplate.update("INSERT INTO Persons (name, surname, personID, uuid) VALUES(?,?,?,UUID_TO_BIN(UUID()))",
                 user.getName(), user.getSurname(), user.getPersonID());
     }
 
+    // Informace o uživateli
+    // {id: string, name: string, surname: string, personID: string , uuid: string }
     @Override
     public User getUsersDetailedInfo(Long ID) {
         String sql = "SELECT * FROM Persons WHERE ID = ?";
         return jdbcTemplate.queryForObject(sql, new Object[]{ID}, userRowMapper);
     }
 
-    private final RowMapper<User> userRowMapper = (rs, rowNum) -> {
-        User user = new User();
-        user.setName(rs.getString("name"));
-        user.setSurname(rs.getString("surname"));
-        user.setPersonID(String.valueOf(rs.getInt("personID")));
-        return user;
-    };
-
-    @Override
-    public User getUsersUnDetailedInfo(Long ID) {
-        String sql = "SELECT ID, name, Surname FROM Persons WHERE ID=?";
-        User user = jdbcTemplate.queryForObject(sql, new Object[]{ID}, new BeanPropertyRowMapper<>(User.class));
-        return user;
-    }
-
+    // Informace o všech uživatelích
+    // {id: string, name: string, surname: string, personID: string , uuid: string }
     @Override
     public List<User> getAllUsersDetailedInfo() {
         String sql = "SELECT * from Persons";
-        return jdbcTemplate.query(sql, new UserRowMapper());
+        return jdbcTemplate.query(sql,new Object[]{}, userRowMapper);
     }
 
-    @Override
-    public List<User> getAllUsersUnDetailedInfo() {
-        String sql = "SELECT ID, name, surname from Persons";
-        List<User> allUsers = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(User.class));
-        return new ArrayList<>(allUsers);
-    }
-
+    // Upravení informací o uživateli
     @Override
     public int updateUser(Object updatedUser) {
         if (updatedUser instanceof User user) {
@@ -66,6 +61,7 @@ public class UserService implements UserRepository {
         }
     }
 
+    // Smazání uživatele
     @Override
     public int deleteUserByID(Long ID) {
         return jdbcTemplate.update("DELETE FROM Persons WHERE ID=?", ID);
