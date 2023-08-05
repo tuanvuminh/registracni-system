@@ -26,11 +26,6 @@ public class User {
         this.surname = surname;
     }
 
-    public void nonDetailedInfo() {
-        this.personID = "";
-        this.uuid = null;
-    }
-
     public Long getID() {
         return ID;
     }
