@@ -68,13 +68,11 @@ public class User {
 
 //  @Override
 //  public String toString() {
-//      return "{" + 
-//             "ID: " + ID + 
+//      return "{ID: " + ID + 
 //             ", name: " + name + 
 //             ", surname: " + surname + 
 //             "}";
 //  }
-
 
     @Override
     public String toString() {
