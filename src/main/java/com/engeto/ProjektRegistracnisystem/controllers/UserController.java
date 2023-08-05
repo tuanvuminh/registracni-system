@@ -62,7 +62,7 @@ public class UserController {
         return ResponseEntity.ok(result.toString());
     }
 
-    // // Upravení informací o uživateli
+    // Upravení informací o uživateli
     @PutMapping("/user/{ID}")
     public ResponseEntity<String> updateUser(@PathVariable Long ID, @RequestBody User user) {
         Object updatedUser = userService.getUsersDetailedInfo(ID);
