@@ -59,7 +59,7 @@ public class UserController {
                     (", name: ").append(user.getName()).append
                     (", surname: ").append(user.getSurname()).append("}>").append("\n");
         }
-        return ResponseEntity.ok(result.toString());
+        return ResponseEntity.ok(listNonDetailed.toString());
     }
 
     // Upravení informací o uživateli
