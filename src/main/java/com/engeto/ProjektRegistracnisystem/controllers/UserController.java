@@ -32,10 +32,11 @@ public class UserController {
         }
     }
 
-    // Informace o uživateli GET api/v1/user/{ID}
-    // {id: string, name: string, surname: string}
-    // Informace o uživateli GET api/v1/user/{ID}?detail=true
-    // {id: string, name: string, surname: string, personID: string , uuid: string}
+    /*  Informace o uživateli GET api/v1/user/{ID}
+        {id: string, name: string, surname: string}
+        Informace o uživateli GET api/v1/user/{ID}?detail=true
+        {id: string, name: string, surname: string, personID: string , uuid: string}
+    */
     @GetMapping("/user/{ID}")
     public ResponseEntity<String> getUserById(@PathVariable Long ID, @RequestParam(required = false) boolean detail) {
         User user = userService.getUsersDetailedInfo(ID);
@@ -46,10 +47,11 @@ public class UserController {
     }
 
 
-    // Informace o všech uživatelích GET api/v1/users
-    // List <{id: string, name: string, surname: string}>
-    // Informace o všech uživatelích GET api/v1/users?detail=true
-    // {id: string, name: string, surname: string, personID: string , uuid: string}
+    /* Informace o všech uživatelích GET api/v1/users
+       List <{id: string, name: string, surname: string}>
+       Informace o všech uživatelích GET api/v1/users?detail=true
+       {id: string, name: string, surname: string, personID: string , uuid: string}
+    */
     @GetMapping("/users")
     public ResponseEntity<String> getAllUsersInfo(@RequestParam(required = false) boolean detail) {
         List<User> allUsers = userService.getAllUsersDetailedInfo();
