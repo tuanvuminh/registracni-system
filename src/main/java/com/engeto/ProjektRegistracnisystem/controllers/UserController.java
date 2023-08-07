@@ -33,34 +33,48 @@ public class UserController {
     }
 
     // Informace o uživateli GET api/v1/user/{ID}
-    // {id: string, name: string, surname: string }
-    // {id: string, name: string, surname: string, personID: string , uuid: string  }
+    // {id: string, name: string, surname: string}
+    // Informace o uživateli GET api/v1/user/{ID}?detail=true
+    // {id: string, name: string, surname: string, personID: string , uuid: string}
     @GetMapping("/user/{ID}")
     public ResponseEntity<String> getUserById(@PathVariable Long ID, @RequestParam(required = false) boolean detail) {
         User user = userService.getUsersDetailedInfo(ID);
-        StringBuilder userNonDetailed = new StringBuilder();
-        userNonDetailed.append("{id: ").append(user.getID()).append(", name: ").append(user.getName()).append(", surname: ").
-                append(user.getSurname()).append("}");
         if (detail) {
-            return ResponseEntity.ok(user.toString());
+            return ResponseEntity.ok(user.detailedInfo());
         }
-        return ResponseEntity.ok(userNonDetailed.toString());
+        return ResponseEntity.ok(user.nonDetailedInfo());
     }
 
 
     // Informace o všech uživatelích GET api/v1/users
-    // List <{id: string, name: string, surname: string }>
+    // List <{id: string, name: string, surname: string}>
+    // Informace o všech uživatelích GET api/v1/users?detail=true
+    // {id: string, name: string, surname: string, personID: string , uuid: string}
     @GetMapping("/users")
-    public ResponseEntity<String> getAllUsersInfo() {
+    public ResponseEntity<String> getAllUsersInfo(@RequestParam(required = false) boolean detail) {
         List<User> allUsers = userService.getAllUsersDetailedInfo();
-        StringBuilder listNonDetailed = new StringBuilder();
-        for (User user : allUsers) {
-            listNonDetailed.append("List <{id: ").append(user.getID()).append
+        StringBuilder list = new StringBuilder();
+        if (detail) for (User user : allUsers) {
+            list.append
+                    ("{id: ").append(user.getID()).append
                     (", name: ").append(user.getName()).append
-                    (", surname: ").append(user.getSurname()).append("}>").append("\n");
+                    (", surname: ").append(user.getSurname()).append
+                    (", personID: ").append(user.getPersonID()).append
+                    (", uuid: ").append(user.getUuid()).append
+                    (" }").append("\n");
         }
-        return ResponseEntity.ok(listNonDetailed.toString());
+        else {
+            for (User user : allUsers) {
+                list.append
+                        ("List <{id: ").append(user.getID()).append
+                        (", name: ").append(user.getName()).append
+                        (", surname: ").append(user.getSurname()).append
+                        (" }>").append("\n");
+            }
+        }
+        return ResponseEntity.ok(list.toString());
     }
+
 
     // Upravení informací o uživateli
     @PutMapping("/user/{ID}")

@@ -35,7 +35,6 @@ public class UserService implements UserRepository {
     }
 
     // Informace o uživateli
-    // {id: string, name: string, surname: string, personID: string , uuid: string }
     @Override
     public User getUsersDetailedInfo(Long ID) {
         String sql = "SELECT * FROM Persons WHERE ID = ?";
@@ -43,7 +42,6 @@ public class UserService implements UserRepository {
     }
 
     // Informace o všech uživatelích
-    // {id: string, name: string, surname: string, personID: string , uuid: string }
     @Override
     public List<User> getAllUsersDetailedInfo() {
         String sql = "SELECT * from Persons";
