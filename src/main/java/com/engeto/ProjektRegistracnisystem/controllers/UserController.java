@@ -75,7 +75,6 @@ public class UserController {
         return ResponseEntity.ok(list.toString());
     }
 
-
     // Upravení informací o uživateli
     @PutMapping("/user/{ID}")
     public ResponseEntity<String> updateUser(@PathVariable Long ID, @RequestBody User user) {
