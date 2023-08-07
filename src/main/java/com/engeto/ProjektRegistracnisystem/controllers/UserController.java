@@ -28,7 +28,7 @@ public class UserController {
             userService.createUser(new User(user.getName(), user.getSurname(), user.getPersonID()));
             return new ResponseEntity<>("User was added successfully.", HttpStatus.CREATED);
         } catch (Exception e) {
-            return new ResponseEntity<>("User could not be added", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("User could not be added.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
