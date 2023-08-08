@@ -38,7 +38,13 @@ public class UserService implements UserRepository {
     @Override
     public User getUsersDetailedInfo(Long ID) {
         String sql = "SELECT * FROM Persons WHERE ID = ?";
-        return jdbcTemplate.queryForObject(sql, new Object[]{ID}, userRowMapper);
+        Object[] params = {ID};
+        List<User> users = jdbcTemplate.query(sql, params, userRowMapper);
+        if (!users.isEmpty()) {
+            return users.get(0);
+        } else {
+            return null;
+        }
     }
 
     // Informace o všech uživatelích

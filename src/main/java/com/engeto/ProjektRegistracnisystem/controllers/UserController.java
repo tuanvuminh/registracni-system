@@ -40,12 +40,16 @@ public class UserController {
     @GetMapping("/user/{ID}")
     public ResponseEntity<String> getUserById(@PathVariable Long ID, @RequestParam(required = false) boolean detail) {
         User user = userService.getUsersDetailedInfo(ID);
-        if (detail) {
-            return ResponseEntity.ok(user.detailedInfo());
+        if (user != null) {
+            if (detail) {
+                return ResponseEntity.ok(user.detailedInfo());
+            } else {
+                return ResponseEntity.ok(user.nonDetailedInfo());
+            }
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User with ID " + ID + " was not found.");
         }
-        return ResponseEntity.ok(user.nonDetailedInfo());
     }
-
 
     /* Informace o všech uživatelích GET api/v1/users
        List <{id: string, name: string, surname: string}>
@@ -85,23 +89,21 @@ public class UserController {
             userToUpdate.setName(user.getName());
             userToUpdate.setSurname(user.getSurname());
             userService.updateUser(userToUpdate);
-            return new ResponseEntity<>("User was updated successfully.", HttpStatus.OK);
+            return ResponseEntity.status(HttpStatus.OK).body("User was updated successfully.");
         } else {
-            return new ResponseEntity<>("Cannot find user with ID = " + ID, HttpStatus.NOT_FOUND);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User with ID " + ID + " was not found.");
         }
     }
 
     // Smazání uživatele DELETE api/v1/user/{ID}
     @DeleteMapping("/user/{ID}")
     public ResponseEntity<String> deleteUserById(@PathVariable Long ID) {
-        try {
-            int result = userService.deleteUserByID(ID);
-            if (result == 0) {
-                return new ResponseEntity<>("User with ID " + ID + " could not be found.", HttpStatus.NOT_FOUND);
-            }
-            return new ResponseEntity<>("User was deleted successfully.", HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>("User with ID " + ID + " could not be deleted.", HttpStatus.INTERNAL_SERVER_ERROR);
+        int result = userService.deleteUserByID(ID);
+        if (result == 0) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User with ID " + ID + " was not found.");
+        } else {
+            return ResponseEntity.status(HttpStatus.OK).body("User was deleted successfully.");
         }
     }
+
 }

@@ -39,7 +39,8 @@ public class User {
     }
 
     public void setPersonID(String personID) {
-        this.personID = personID;
+        if (personID.length() == 12)
+            this.personID = personID;
     }
 
     public String getName() {
