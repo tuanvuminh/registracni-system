@@ -38,8 +38,7 @@ public class UserService implements UserRepository {
     @Override
     public User getUsersDetailedInfo(Long ID) {
         String sql = "SELECT * FROM Persons WHERE ID = ?";
-        Object[] params = {ID};
-        List<User> users = jdbcTemplate.query(sql, params, userRowMapper);
+        List<User> users = jdbcTemplate.query(sql, new Object[]{ID}, userRowMapper);
         if (!users.isEmpty()) {
             return users.get(0);
         } else {
