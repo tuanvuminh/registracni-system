@@ -70,10 +70,10 @@ public class UserController {
         else {
             for (User user : allUsers) {
                 list.append
-                        ("List <{\"id\": ").append(user.getID()).append
+                        ("{\"id\": ").append(user.getID()).append
                         (", \"name\": \"").append(user.getName()).append
                         ("\", \"surname\": \"").append(user.getSurname()).append
-                        ("\" }>").append("\n");
+                        ("\" }").append("\n");
             }
         }
         return ResponseEntity.ok(list.toString());
