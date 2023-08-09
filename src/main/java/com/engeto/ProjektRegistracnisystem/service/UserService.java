@@ -29,14 +29,6 @@ public class UserService implements UserRepository {
         return user;
     };
 
-    private final RowMapper<User> userRowMapperNonDetailed = (rs, rowNum) -> {
-        User user = new User();
-        user.setID(rs.getLong("ID"));
-        user.setName(rs.getString("name"));
-        user.setSurname(rs.getString("surname"));
-        return user;
-    };
-
     // Založení nového uživatele
     @Override
     public int createUser(User user) {
