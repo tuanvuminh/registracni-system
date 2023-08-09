@@ -96,22 +96,19 @@ public class User {
     }
 
     public String detailedInfo() {
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            return objectMapper.writeValueAsString(this);
-        } catch (JsonProcessingException e) {
-            return super.toString();
-        }
+        return  "{\"id\": " + ID +
+                ", \"name\": \"" + name +
+                "\", \"surname\": \"" +surname +
+                "\", \"personID\": \"" + personID +
+                "\", \"uuid\": \"" + uuid +
+                "\" }";
     }
 
     public String nonDetailedInfo() {
-        ObjectMapper objectMapper = new ObjectMapper();
-        UserNonDetailedInfo userNonDetailedInfo = new UserNonDetailedInfo(ID, name, surname);
-        try {
-            return objectMapper.writeValueAsString(userNonDetailedInfo);
-        } catch (JsonProcessingException e) {
-            return super.toString();
-        }
+        return  "{\"id\": " + ID +
+                ", \"name\": \"" + name +
+                "\", \"surname\": \"" + surname +
+                "\" }";
     }
 
 }
