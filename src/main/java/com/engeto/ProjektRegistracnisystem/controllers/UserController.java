@@ -60,20 +60,12 @@ public class UserController {
         StringBuilder list = new StringBuilder();
         if (detail) for (User user : allUsers) {
             list.append
-                    ("{\"id\": ").append(user.getID()).append
-                    (", \"name\": \"").append(user.getName()).append
-                    ("\", \"surname\": \"").append(user.getSurname()).append
-                    ("\", \"personID\": \"").append(user.getPersonID()).append
-                    ("\", \"uuid\": \"").append(user.getUuid()).append
-                    ("\" }").append("\n");
+                    (user.detailedInfo()).append("\n");
         }
         else {
             for (User user : allUsers) {
                 list.append
-                        ("{\"id\": ").append(user.getID()).append
-                        (", \"name\": \"").append(user.getName()).append
-                        ("\", \"surname\": \"").append(user.getSurname()).append
-                        ("\" }").append("\n");
+                        (user.nonDetailedInfo()).append("\n");
             }
         }
         return ResponseEntity.ok(list.toString());
