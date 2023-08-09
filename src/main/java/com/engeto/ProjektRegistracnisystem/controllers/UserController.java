@@ -26,9 +26,9 @@ public class UserController {
     public ResponseEntity<String> addNewUser(@RequestBody User user) {
         try {
             userService.createUser(new User(user.getName(), user.getSurname(), user.getPersonID()));
-            return new ResponseEntity<>("User was added successfully.", HttpStatus.CREATED);
+            return ResponseEntity.status(HttpStatus.CREATED).body("User was added successfully.");
         } catch (Exception e) {
-            return new ResponseEntity<>("User could not be added.", HttpStatus.INTERNAL_SERVER_ERROR);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("User could not be added, because personID is not valid.");
         }
     }
 
