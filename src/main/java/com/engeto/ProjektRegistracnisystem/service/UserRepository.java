@@ -11,7 +11,7 @@ public interface UserRepository {
 
     List<User> getAllUsersDetailedInfo();
 
-    public int updateUser(Object updatedUser);
+    int updateUser(Object updatedUser);
 
     int deleteUserByID(Long ID);
 }

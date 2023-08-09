@@ -35,8 +35,7 @@ public class UserController {
     /*  Informace o uživateli GET api/v1/user/{ID}
         {id: string, name: string, surname: string}
         Informace o uživateli GET api/v1/user/{ID}?detail=true
-        {id: string, name: string, surname: string, personID: string , uuid: string}
-    */
+        {id: string, name: string, surname: string, personID: string , uuid: string} */
     @GetMapping("/user/{ID}")
     public ResponseEntity<String> getUserById(@PathVariable Long ID, @RequestParam(required = false) boolean detail) {
         User user = userService.getUsersDetailedInfo(ID);
@@ -54,28 +53,27 @@ public class UserController {
     /* Informace o všech uživatelích GET api/v1/users
        List <{id: string, name: string, surname: string}>
        Informace o všech uživatelích GET api/v1/users?detail=true
-       {id: string, name: string, surname: string, personID: string , uuid: string}
-    */
+       {id: string, name: string, surname: string, personID: string , uuid: string} */
     @GetMapping("/users")
     public ResponseEntity<String> getAllUsersInfo(@RequestParam(required = false) boolean detail) {
         List<User> allUsers = userService.getAllUsersDetailedInfo();
         StringBuilder list = new StringBuilder();
         if (detail) for (User user : allUsers) {
             list.append
-                    ("{id: ").append(user.getID()).append
-                    (", name: ").append(user.getName()).append
-                    (", surname: ").append(user.getSurname()).append
-                    (", personID: ").append(user.getPersonID()).append
-                    (", uuid: ").append(user.getUuid()).append
-                    (" }").append("\n");
+                    ("{\"id\": ").append(user.getID()).append
+                    (", \"name\": \"").append(user.getName()).append
+                    ("\", \"surname\": \"").append(user.getSurname()).append
+                    ("\", \"personID\": \"").append(user.getPersonID()).append
+                    ("\", \"uuid\": \"").append(user.getUuid()).append
+                    ("\" }").append("\n");
         }
         else {
             for (User user : allUsers) {
                 list.append
-                        ("List <{id: ").append(user.getID()).append
-                        (", name: ").append(user.getName()).append
-                        (", surname: ").append(user.getSurname()).append
-                        (" }>").append("\n");
+                        ("List <{\"id\": ").append(user.getID()).append
+                        (", \"name\": \"").append(user.getName()).append
+                        ("\", \"surname\": \"").append(user.getSurname()).append
+                        ("\" }>").append("\n");
             }
         }
         return ResponseEntity.ok(list.toString());

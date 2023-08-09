@@ -1,5 +1,7 @@
 package com.engeto.ProjektRegistracnisystem.model;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.io.BufferedReader;
@@ -93,17 +95,23 @@ public class User {
         this.uuid = uuid;
     }
 
-    public String nonDetailedInfo() {
-        return "{ID: " + ID +
-                ", name: " + name +
-                ", surname: " + surname + " }";
+    public String detailedInfo() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            return objectMapper.writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            return super.toString();
+        }
     }
 
-    public String detailedInfo() {
-        return "{ID: " + ID +
-                ", name: " + name +
-                ", surname: " + surname +
-                ", personID: " + personID +
-                ", uuid: " + uuid + " }";
+    public String nonDetailedInfo() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        UserNonDetailedInfo userNonDetailedInfo = new UserNonDetailedInfo(ID, name, surname);
+        try {
+            return objectMapper.writeValueAsString(userNonDetailedInfo);
+        } catch (JsonProcessingException e) {
+            return super.toString();
+        }
     }
+
 }

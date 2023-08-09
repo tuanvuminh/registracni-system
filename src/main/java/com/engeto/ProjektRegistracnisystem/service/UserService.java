@@ -8,6 +8,8 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
 import org.yaml.snakeyaml.events.Event;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +26,14 @@ public class UserService implements UserRepository {
         user.setSurname(rs.getString("surname"));
         user.setPersonID(rs.getString("personID"));
         user.setUuid(rs.getBytes("uuid"));
+        return user;
+    };
+
+    private final RowMapper<User> userRowMapperNonDetailed = (rs, rowNum) -> {
+        User user = new User();
+        user.setID(rs.getLong("ID"));
+        user.setName(rs.getString("name"));
+        user.setSurname(rs.getString("surname"));
         return user;
     };
 
@@ -49,7 +59,7 @@ public class UserService implements UserRepository {
     // Informace o všech uživatelích
     @Override
     public List<User> getAllUsersDetailedInfo() {
-        String sql = "SELECT * from Persons";
+        String sql = "SELECT * FROM Persons";
         return jdbcTemplate.query(sql,new Object[]{}, userRowMapper);
     }
 
