@@ -1,3 +1,5 @@
+CREATE DATABASE GenesisResources;
+
 USE GenesisResources;
 
 CREATE TABLE Persons(
@@ -8,6 +10,3 @@ CREATE TABLE Persons(
 	uuid VARCHAR(100) UNIQUE
 );
 
-DELETE FROM Persons;
-
-ALTER TABLE Persons AUTO_INCREMENT = 1;
