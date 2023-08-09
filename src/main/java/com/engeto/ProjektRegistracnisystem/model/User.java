@@ -1,8 +1,12 @@
 package com.engeto.ProjektRegistracnisystem.model;
 
-import org.springframework.data.relational.core.mapping.Table;
+import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.util.Arrays;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 
 public class User {
     private Long ID;
@@ -11,6 +15,7 @@ public class User {
     private String personID;
     private byte[] uuid;
 
+    // Konstruktory
     public User() {
     }
 
@@ -26,6 +31,32 @@ public class User {
         this.surname = surname;
     }
 
+    // Ověření zda je personID validní a zda obsahuje 12 znaků.
+    public void setPersonID(String personID) {
+        if (isValidPersonID(personID)) {
+            this.personID = personID;
+        }
+    }
+
+    private boolean isValidPersonID(String personID) {
+        if (personID.length() != 12) {
+            return false;
+        }
+
+        try (BufferedReader reader = new BufferedReader(new FileReader("personID.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.equals(personID)) {
+                    return true;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    // Gettery a settery
     public Long getID() {
         return ID;
     }
@@ -36,11 +67,6 @@ public class User {
 
     public String getPersonID() {
         return personID;
-    }
-
-    public void setPersonID(String personID) {
-        if (personID.length() == 12)
-            this.personID = personID;
     }
 
     public String getName() {
