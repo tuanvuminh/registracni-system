@@ -7,9 +7,9 @@ public interface UserRepository {
 
     int createUser(User user);
 
-    User getUsersDetailedInfo(Long ID);
+    Object getUserDetails(Long ID, boolean detail);
 
-    List<User> getAllUsersDetailedInfo();
+    List<Object> getUsersList(boolean detail);
 
     int updateUser(Object updatedUser);
 

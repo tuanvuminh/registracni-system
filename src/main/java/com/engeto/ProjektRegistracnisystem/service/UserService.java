@@ -1,7 +1,9 @@
 package com.engeto.ProjektRegistracnisystem.service;
 
 import com.engeto.ProjektRegistracnisystem.model.User;
+import com.engeto.ProjektRegistracnisystem.model.UserNonDetailed;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -14,10 +16,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class UserService implements UserRepository {
+public class UserService implements UserRepository, RowMapper<User> {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
+    @Override
+    public User mapRow(ResultSet rs, int rowNum) throws SQLException {
+        return null;
+    }
 
     private final RowMapper<User> userRowMapper = (rs, rowNum) -> {
         User user = new User();
@@ -37,22 +44,65 @@ public class UserService implements UserRepository {
     }
 
     // Informace o uživateli
-    @Override
-    public User getUsersDetailedInfo(Long ID) {
-        String sql = "SELECT * FROM Persons WHERE ID = ?";
-        List<User> users = jdbcTemplate.query(sql, new Object[]{ID}, userRowMapper);
-        if (!users.isEmpty()) {
-            return users.get(0);
+    public Object getUserDetails(Long ID, boolean detail) {
+        String sql;
+        if (detail) {
+            sql = "SELECT ID, name, surname, personID, uuid FROM Persons WHERE ID = ?";
         } else {
+            sql = "SELECT ID, name, surname FROM Persons WHERE ID = ?";
+        }
+
+        try {
+            return jdbcTemplate.queryForObject(sql, new Object[]{ID}, (resultSet, rowNum) -> {
+                if (detail) {
+                    User user = new User();
+                    user.setID(resultSet.getLong("ID"));
+                    user.setName(resultSet.getString("name"));
+                    user.setSurname(resultSet.getString("surname"));
+                    user.setPersonID(resultSet.getString("personID"));
+                    user.setUuid(resultSet.getString("uuid").getBytes());
+                    return user;
+                } else {
+                    UserNonDetailed user = new UserNonDetailed(
+                            resultSet.getLong("ID"),
+                            resultSet.getString("name"),
+                            resultSet.getString("surname")
+                    );
+                    return user;
+                }
+            });
+        } catch (EmptyResultDataAccessException e) {
             return null;
         }
     }
 
     // Informace o všech uživatelích
-    @Override
-    public List<User> getAllUsersDetailedInfo() {
-        String sql = "SELECT * FROM Persons";
-        return jdbcTemplate.query(sql,new Object[]{}, userRowMapper);
+    public List<Object> getUsersList(boolean detail) {
+        String sql;
+        if (detail) {
+            sql = "SELECT ID, name, surname, personID, uuid FROM Persons";
+        } else {
+            sql = "SELECT ID, name, surname FROM Persons";
+        }
+
+        return jdbcTemplate.query(sql, (resultSet, rowNum) -> {
+            if (detail) {
+                User user = new User();
+                user.setID(resultSet.getLong("ID"));
+                user.setName(resultSet.getString("name"));
+                user.setSurname(resultSet.getString("surname"));
+                user.setPersonID(resultSet.getString("personID"));
+                user.setUuid(resultSet.getString("uuid").getBytes());
+                return user;
+            } else {
+                UserNonDetailed user = new UserNonDetailed(
+                        resultSet.getLong("ID"),
+                        resultSet.getString("name"),
+                        resultSet.getString("surname")
+                );
+                return user;
+            }
+        });
     }
 
     // Upravení informací o uživateli
@@ -71,6 +121,7 @@ public class UserService implements UserRepository {
     public int deleteUserByID(Long ID) {
         return jdbcTemplate.update("DELETE FROM Persons WHERE ID=?", ID);
     }
+
 
 }
 

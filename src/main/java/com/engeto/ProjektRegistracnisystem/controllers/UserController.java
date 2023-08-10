@@ -37,14 +37,10 @@ public class UserController {
         Informace o uživateli GET api/v1/user/{ID}?detail=true
         {id: string, name: string, surname: string, personID: string , uuid: string} */
     @GetMapping("/user/{ID}")
-    public ResponseEntity<String> getUserById(@PathVariable Long ID, @RequestParam(required = false) boolean detail) {
-        User user = userService.getUsersDetailedInfo(ID);
+    public ResponseEntity<Object> getUserById(@PathVariable Long ID, @RequestParam(required = false) boolean detail) {
+        Object user = userService.getUserDetails(ID, detail);
         if (user != null) {
-            if (detail) {
-                return ResponseEntity.ok(user.detailedInfo());
-            } else {
-                return ResponseEntity.ok(user.nonDetailedInfo());
-            }
+            return ResponseEntity.ok(user);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User with ID " + ID + " was not found.");
         }
@@ -55,26 +51,19 @@ public class UserController {
        Informace o všech uživatelích GET api/v1/users?detail=true
        {id: string, name: string, surname: string, personID: string , uuid: string} */
     @GetMapping("/users")
-    public ResponseEntity<String> getAllUsersInfo(@RequestParam(required = false) boolean detail) {
-        List<User> allUsers = userService.getAllUsersDetailedInfo();
-        StringBuilder list = new StringBuilder();
-        if (detail) for (User user : allUsers) {
-            list.append
-                    (user.detailedInfo()).append("\n");
+    public ResponseEntity<List<Object>> getUsersList(@RequestParam(required = false) boolean detail) {
+        List<Object> userList = userService.getUsersList(detail);
+        if (!userList.isEmpty()) {
+            return ResponseEntity.ok(userList);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
-        else {
-            for (User user : allUsers) {
-                list.append
-                        (user.nonDetailedInfo()).append("\n");
-            }
-        }
-        return ResponseEntity.ok(list.toString());
     }
 
     // Upravení informací o uživateli
     @PutMapping("/user/{ID}")
     public ResponseEntity<String> updateUser(@PathVariable Long ID, @RequestBody User user) {
-        Object updatedUser = userService.getUsersDetailedInfo(ID);
+        Object updatedUser = userService.getUserDetails(ID, true);
         if (updatedUser instanceof User userToUpdate) {
             userToUpdate.setName(user.getName());
             userToUpdate.setSurname(user.getSurname());

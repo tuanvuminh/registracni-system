@@ -95,20 +95,4 @@ public class User {
         this.uuid = uuid;
     }
 
-    public String detailedInfo() {
-        return  "{\"id\": " + ID +
-                ", \"name\": \"" + name +
-                "\", \"surname\": \"" +surname +
-                "\", \"personID\": \"" + personID +
-                "\", \"uuid\": \"" + uuid +
-                "\" }";
-    }
-
-    public String nonDetailedInfo() {
-        return  "{\"id\": " + ID +
-                ", \"name\": \"" + name +
-                "\", \"surname\": \"" + surname +
-                "\" }";
-    }
-
 }
