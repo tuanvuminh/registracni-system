@@ -56,7 +56,7 @@ public class UserControllerTest {
     }
 
     @Test
-    @DisplayName("Získání informací uživatele pomocí ID, které neexistuje.")
+    @DisplayName("Test získání informací uživatele pomocí neexistujícího ID.")
     public void getUsersInfoByNonExistingID() {
         when(userService.getUserDetails(anyLong(), anyBoolean())).thenReturn(null);
 
@@ -138,7 +138,7 @@ public class UserControllerTest {
     }
 
     @Test
-    @DisplayName("Smazání uživatele pomocí neexistujícího ID.")
+    @DisplayName("Test smazání uživatele pomocí neexistujícího ID.")
     public void deleteUserByNonExistingID() {
         when(userService.deleteUserByID(anyLong())).thenReturn(0);
 
