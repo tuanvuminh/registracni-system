@@ -12,10 +12,5 @@ public class ProjektRegistracniSystemApplication {
 
 	public static void main(String[] args) throws SQLException, ClassNotFoundException {
 		SpringApplication.run(ProjektRegistracniSystemApplication.class, args);
-
-
-
-
 	}
-
 }
