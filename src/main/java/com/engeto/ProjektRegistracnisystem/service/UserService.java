@@ -1,5 +1,6 @@
 package com.engeto.ProjektRegistracnisystem.service;
 
+import com.engeto.ProjektRegistracnisystem.exceptions.UserException;
 import com.engeto.ProjektRegistracnisystem.model.User;
 import com.engeto.ProjektRegistracnisystem.model.UserNonDetailed;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +51,11 @@ public class UserService implements UserRepository, RowMapper<User> {
                     user.setID(resultSet.getLong("ID"));
                     user.setName(resultSet.getString("name"));
                     user.setSurname(resultSet.getString("surname"));
-                    user.setPersonID(resultSet.getString("personID"));
+                    try {
+                        user.setPersonID(resultSet.getString("personID"));
+                    } catch (UserException e) {
+                        System.err.println(e.getLocalizedMessage());
+                    }
                     user.setUuid(resultSet.getString("uuid").getBytes());
                     return user;
                 } else {
@@ -83,7 +88,11 @@ public class UserService implements UserRepository, RowMapper<User> {
                 user.setID(resultSet.getLong("ID"));
                 user.setName(resultSet.getString("name"));
                 user.setSurname(resultSet.getString("surname"));
-                user.setPersonID(resultSet.getString("personID"));
+                try {
+                    user.setPersonID(resultSet.getString("personID"));
+                } catch (UserException e) {
+                    System.err.println(e.getLocalizedMessage());
+                }
                 user.setUuid(resultSet.getString("uuid").getBytes());
                 return user;
             } else {
