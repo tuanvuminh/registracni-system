@@ -1,7 +1,7 @@
 {
-	"id": "774263b3-0989-45bd-8282-34ed077d2e62",
+	"id": "0574005e-2ec0-4de4-b548-7ea513c2feaf",
 	"name": "RegistracniSystem",
-	"timestamp": "2023-08-09T15:20:02.847Z",
+	"timestamp": "2023-08-10T10:30:19.915Z",
 	"collection_id": "28237017-2496edbd-c0a2-4331-b68f-99cae7744dd7",
 	"folder_id": 0,
 	"environment_id": "28237017-b2258b5f-5445-4eef-a6d4-e99b5b39754c",
@@ -9,41 +9,14 @@
 	"delay": 0,
 	"persist": true,
 	"status": "finished",
-	"startedAt": "2023-08-09T15:20:02.054Z",
+	"startedAt": "2023-08-10T10:30:18.604Z",
 	"totalFail": 0,
 	"results": [
-		{
-			"id": "88d8abcc-215e-463a-aada-514313cbb566",
-			"name": "500 POST api/v1/user",
-			"url": "localhost:8080/api/v1/user",
-			"time": 21,
-			"responseCode": {
-				"code": 500,
-				"name": "Internal Server Error"
-			},
-			"tests": {
-				"Status code 500": true
-			},
-			"testPassFailCounts": {
-				"Status code 500": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				21
-			],
-			"allTests": [
-				{
-					"Status code 500": true
-				}
-			]
-		},
 		{
 			"id": "8e50d69b-a87f-47fe-beba-f475093708b0",
 			"name": "POST api/v1/user",
 			"url": "localhost:8080/api/v1/user",
-			"time": 8,
+			"time": 16,
 			"responseCode": {
 				"code": 201,
 				"name": "Created"
@@ -58,7 +31,7 @@
 				}
 			},
 			"times": [
-				8
+				16
 			],
 			"allTests": [
 				{
@@ -94,10 +67,37 @@
 			]
 		},
 		{
+			"id": "88d8abcc-215e-463a-aada-514313cbb566",
+			"name": "500 POST api/v1/user",
+			"url": "localhost:8080/api/v1/user",
+			"time": 7,
+			"responseCode": {
+				"code": 500,
+				"name": "Internal Server Error"
+			},
+			"tests": {
+				"Status code 500": true
+			},
+			"testPassFailCounts": {
+				"Status code 500": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				7
+			],
+			"allTests": [
+				{
+					"Status code 500": true
+				}
+			]
+		},
+		{
 			"id": "ecb042d1-4aaf-43db-b336-7ead7eea04d4",
 			"name": "GET api/v1/users",
 			"url": "localhost:8080/api/v1/users",
-			"time": 5,
+			"time": 19,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -112,7 +112,7 @@
 				}
 			},
 			"times": [
-				5
+				19
 			],
 			"allTests": [
 				{
@@ -124,7 +124,7 @@
 			"id": "f4d9a18f-8bb5-471e-9fdd-5042464be56f",
 			"name": "GET api/v1/users?detail=true",
 			"url": "localhost:8080/api/v1/users?detail=true",
-			"time": 6,
+			"time": 11,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -139,7 +139,7 @@
 				}
 			},
 			"times": [
-				6
+				11
 			],
 			"allTests": [
 				{
@@ -151,7 +151,7 @@
 			"id": "f9d06210-2a40-46dc-b477-aad4cb36e6d6",
 			"name": "GET api/v1/user/{ID}",
 			"url": "localhost:8080/api/v1/user/1",
-			"time": 6,
+			"time": 8,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -166,7 +166,7 @@
 				}
 			},
 			"times": [
-				6
+				8
 			],
 			"allTests": [
 				{
@@ -178,7 +178,7 @@
 			"id": "8fc14fea-f698-4dfd-98d8-40991af93aa6",
 			"name": "GET api/v1/user/{ID}?detail=true",
 			"url": "localhost:8080/api/v1/user/1?detail=true",
-			"time": 7,
+			"time": 6,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -193,7 +193,34 @@
 				}
 			},
 			"times": [
-				7
+				6
+			],
+			"allTests": [
+				{
+					"Status code 200": true
+				}
+			]
+		},
+		{
+			"id": "6fca4939-4936-497f-a63c-3d5e87939a8b",
+			"name": "DELETE api/v1/user/{ID}",
+			"url": "localhost:8080/api/v1/user/2",
+			"time": 6,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code 200": true
+			},
+			"testPassFailCounts": {
+				"Status code 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				6
 			],
 			"allTests": [
 				{
@@ -204,8 +231,8 @@
 		{
 			"id": "71849c08-553b-4ff3-9e5b-9f360adf8442",
 			"name": "PUT api/v1/user/{ID}",
-			"url": "localhost:8080/api/v1/user/2",
-			"time": 10,
+			"url": "localhost:8080/api/v1/user/1",
+			"time": 9,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -220,7 +247,7 @@
 				}
 			},
 			"times": [
-				10
+				9
 			],
 			"allTests": [
 				{
@@ -232,114 +259,6 @@
 			"id": "87d4610f-ffb1-4a85-849c-dadbbb598575",
 			"name": "404 PUT api/v1/user/{ID}",
 			"url": "localhost:8080/api/v1/user/5",
-			"time": 19,
-			"responseCode": {
-				"code": 404,
-				"name": "Not Found"
-			},
-			"tests": {
-				"Status code 404": true
-			},
-			"testPassFailCounts": {
-				"Status code 404": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				19
-			],
-			"allTests": [
-				{
-					"Status code 404": true
-				}
-			]
-		},
-		{
-			"id": "6fca4939-4936-497f-a63c-3d5e87939a8b",
-			"name": "DELETE api/v1/user/{ID}",
-			"url": "localhost:8080/api/v1/user/2",
-			"time": 13,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"Status code 200": true
-			},
-			"testPassFailCounts": {
-				"Status code 200": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				13
-			],
-			"allTests": [
-				{
-					"Status code 200": true
-				}
-			]
-		},
-		{
-			"id": "16d123ef-7b4c-4451-89f7-2b8a506b1ae5",
-			"name": "404 GET api/v1/user/{ID}",
-			"url": "localhost:8080/api/v1/user/5",
-			"time": 8,
-			"responseCode": {
-				"code": 404,
-				"name": "Not Found"
-			},
-			"tests": {
-				"Status code 404": true
-			},
-			"testPassFailCounts": {
-				"Status code 404": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				8
-			],
-			"allTests": [
-				{
-					"Status code 404": true
-				}
-			]
-		},
-		{
-			"id": "29af9da8-7245-4d1a-96f3-752e38603156",
-			"name": "404 GET api/v1/user/{ID}?detail=true",
-			"url": "localhost:8080/api/v1/user/5?detail=true",
-			"time": 6,
-			"responseCode": {
-				"code": 404,
-				"name": "Not Found"
-			},
-			"tests": {
-				"Status code 404": true
-			},
-			"testPassFailCounts": {
-				"Status code 404": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				6
-			],
-			"allTests": [
-				{
-					"Status code 404": true
-				}
-			]
-		},
-		{
-			"id": "e610fab1-36d4-4255-8862-91eeafa385bb",
-			"name": "404 DELETE api/v1/user/{ID}",
-			"url": "localhost:8080/api/v1/user/5",
 			"time": 7,
 			"responseCode": {
 				"code": 404,
@@ -362,22 +281,103 @@
 					"Status code 404": true
 				}
 			]
+		},
+		{
+			"id": "16d123ef-7b4c-4451-89f7-2b8a506b1ae5",
+			"name": "404 GET api/v1/user/{ID}",
+			"url": "localhost:8080/api/v1/user/5",
+			"time": 5,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Status code 404": true
+			},
+			"testPassFailCounts": {
+				"Status code 404": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5
+			],
+			"allTests": [
+				{
+					"Status code 404": true
+				}
+			]
+		},
+		{
+			"id": "29af9da8-7245-4d1a-96f3-752e38603156",
+			"name": "404 GET api/v1/user/{ID}?detail=true",
+			"url": "localhost:8080/api/v1/user/5?detail=true",
+			"time": 12,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Status code 404": true
+			},
+			"testPassFailCounts": {
+				"Status code 404": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				12
+			],
+			"allTests": [
+				{
+					"Status code 404": true
+				}
+			]
+		},
+		{
+			"id": "e610fab1-36d4-4255-8862-91eeafa385bb",
+			"name": "404 DELETE api/v1/user/{ID}",
+			"url": "localhost:8080/api/v1/user/5",
+			"time": 14,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Status code 404": true
+			},
+			"testPassFailCounts": {
+				"Status code 404": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				14
+			],
+			"allTests": [
+				{
+					"Status code 404": true
+				}
+			]
 		}
 	],
 	"count": 1,
-	"totalTime": 124,
+	"totalTime": 128,
 	"collection": {
 		"requests": [
-			{
-				"id": "88d8abcc-215e-463a-aada-514313cbb566",
-				"method": "POST"
-			},
 			{
 				"id": "8e50d69b-a87f-47fe-beba-f475093708b0",
 				"method": "POST"
 			},
 			{
 				"id": "f13b1b4a-42dd-4fca-874e-0fee069a1c2a",
+				"method": "POST"
+			},
+			{
+				"id": "88d8abcc-215e-463a-aada-514313cbb566",
 				"method": "POST"
 			},
 			{
@@ -397,16 +397,16 @@
 				"method": "GET"
 			},
 			{
+				"id": "6fca4939-4936-497f-a63c-3d5e87939a8b",
+				"method": "DELETE"
+			},
+			{
 				"id": "71849c08-553b-4ff3-9e5b-9f360adf8442",
 				"method": "PUT"
 			},
 			{
 				"id": "87d4610f-ffb1-4a85-849c-dadbbb598575",
 				"method": "PUT"
-			},
-			{
-				"id": "6fca4939-4936-497f-a63c-3d5e87939a8b",
-				"method": "DELETE"
 			},
 			{
 				"id": "16d123ef-7b4c-4451-89f7-2b8a506b1ae5",
