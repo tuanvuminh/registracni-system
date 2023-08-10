@@ -1,7 +1,4 @@
 # Registrační systém
-Projekt ke splnění Java akademie 2023 ENGETO
-# Zadání
-
 Obrací se na tebe správní rada společnosti Genesis Resources. Tvým úkolem je vytvořit pro ni registrační systém, aby mohla suroviny distribuovat opravdu spravedlivě.
 
 Naše zadání projektu:
