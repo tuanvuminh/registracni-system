@@ -11,7 +11,6 @@ import java.sql.SQLException;
 
 @SpringBootApplication
 public class ProjektRegistracniSystemApplication {
-
 	public static void main(String[] args) throws SQLException, ClassNotFoundException, UserException {
 		SpringApplication.run(ProjektRegistracniSystemApplication.class, args);
 	}
