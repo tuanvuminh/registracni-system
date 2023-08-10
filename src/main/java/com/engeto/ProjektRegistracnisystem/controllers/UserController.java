@@ -46,7 +46,7 @@ public class UserController {
     }
 
     /* Informace o všech uživatelích GET api/v1/users
-       List <{id: string, name: string, surname: string}>
+       {id: string, name: string, surname: string}
        Informace o všech uživatelích GET api/v1/users?detail=true
        {id: string, name: string, surname: string, personID: string , uuid: string} */
     @GetMapping("/users")
