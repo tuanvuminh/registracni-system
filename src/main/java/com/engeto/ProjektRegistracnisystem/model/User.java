@@ -97,5 +97,4 @@ public class User {
     public void setUuid(byte[] uuid) {
         this.uuid = uuid;
     }
-
 }

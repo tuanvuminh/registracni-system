@@ -121,7 +121,5 @@ public class UserService implements UserRepository, RowMapper<User> {
     public int deleteUserByID(Long ID) {
         return jdbcTemplate.update("DELETE FROM Persons WHERE ID=?", ID);
     }
-
-
 }
 
