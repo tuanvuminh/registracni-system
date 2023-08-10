@@ -34,6 +34,7 @@ public class UserService implements UserRepository, RowMapper<User> {
     }
 
     // Informace o uživateli
+    @Override
     public Object getUserDetails(Long ID, boolean detail) {
         String sql;
         if (detail) {
@@ -67,6 +68,7 @@ public class UserService implements UserRepository, RowMapper<User> {
     }
 
     // Informace o všech uživatelích
+    @Override
     public List<Object> getUsersList(boolean detail) {
         String sql;
         if (detail) {
