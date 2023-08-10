@@ -26,5 +26,4 @@ public class UserControllerTest {
     void setUp() {
         MockitoAnnotations.openMocks(this);
     }
-
 }
