@@ -20,7 +20,7 @@ public class UserController {
         return "Welcome to Genesis Resources!";
     }
 
-    // Založení nového uživatele
+    // Založení nového uživatele POST api/v1/user
     @PostMapping("/user")
     public ResponseEntity<String> addNewUser(@RequestBody User user) {
         try {
@@ -46,7 +46,7 @@ public class UserController {
     }
 
     /* Informace o všech uživatelích GET api/v1/users
-       List <{id: string, name: string, surname: string}>
+       {id: string, name: string, surname: string}
        Informace o všech uživatelích GET api/v1/users?detail=true
        {id: string, name: string, surname: string, personID: string , uuid: string} */
     @GetMapping("/users")
@@ -59,7 +59,7 @@ public class UserController {
         }
     }
 
-    // Upravení informací o uživateli
+    // Upravení informací o uživateli PUT api/v1/user/{ID}
     @PutMapping("/user/{ID}")
     public ResponseEntity<String> updateUser(@PathVariable Long ID, @RequestBody User user) {
         Object updatedUser = userService.getUserDetails(ID, true);
