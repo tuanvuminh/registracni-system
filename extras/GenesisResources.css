@@ -31,7 +31,7 @@ body {
 .find-container {
   display: inline-block;
   margin-top: 20px;
-  margin-left: 40px;
+  margin-left: 150px;
 }
 
 input[type="text"] {
@@ -61,7 +61,7 @@ input[type="text-delete"] {
   text-align: center;
   padding: 10px;
   font-size: 20px;
-  margin-bottom: 150px;
+  margin-bottom: 20px;
   border: white;
   color: black; 
   transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
@@ -81,12 +81,13 @@ input[type="text-delete"]::placeholder {
 }
 
 .button {
+  display: inline-block;
   font-family: Helvetica;
   font-weight: lighter;
   font-size: 35px;
   width: 262px;
   text-align: center;
-  display: inline-block;
+  
 }
 
 .span {
@@ -101,11 +102,12 @@ input[type="text-delete"]::placeholder {
 
 .link {
   display: inline-block;
-  margin-left: 295px;
   font-family: Helvetica;
   font-weight: lighter;
   font-size: 35px;
-  width: 550px;
+  width: 262px;
+  text-align: center;
+  margin-left: 140px;
 }
 
 /* Animace */
