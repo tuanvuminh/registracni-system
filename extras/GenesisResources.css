@@ -79,7 +79,7 @@ input[type="text"]::placeholder {
   font-size: 35px;
   width: 262px;
   text-align: center;
-  margin-left: 60px;
+  margin-left: 20px;
 }
 
 /* Animace */
@@ -104,5 +104,23 @@ input[type="text"]::placeholder {
 @keyframes marquee {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
+}
+
+/* Animace */
+
+#circ{
+  display: inline-block;
+  margin-left: 120px;
+  font-size: 10px;
+  font-family: Helvetica;
+  font-weight: lighter;
+  animation: spin 50s linear infinite;
+  color: black;
+}
+
+@keyframes spin{
+  100%{
+      transform: rotate(360deg);
+  }
 }
 

@@ -12,10 +12,9 @@
 </head>
 
 <script>
-     function openAllUsersInfo() {
+    function openAllUsersInfo() {
             window.open("http://localhost:8080/api/v1/users", "_blank");
         }
-
     function openAllUsersDetailedInfo() {
             window.open("http://localhost:8080/api/v1/users?detail=true", "_blank");
         }
@@ -59,6 +58,21 @@
         <span class="span" onclick="openAllUsersDetailedInfo()">DETAILED INFO
         </span>
     </p>
+
+    <div id="circ">
+        &nbsp;GENESIS.RESOURCES.WELCOME.TO.THE.NEW.WORLD.
+    </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/circletype@2.3.0/dist/circletype.min.js"></script>
+
+<script>
+    let circ = new CircleType(document.getElementById('circ'));
+    circ.raduis(360);
+</script>
+    
+
+    
     
 
 
