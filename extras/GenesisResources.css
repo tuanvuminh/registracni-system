@@ -1,47 +1,9 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-<title>
-  GENESIS RESOURCES
-</title>
-</head>
-
-<body>
-
-    <div class="marquee-w">
-
-      <div class="marquee">
-          <span>GENESIS*RESOURCES*GENESIS*RESOURCES*</span>
-      </div>
-
-      <div class="marquee marquee2">
-          <span>GENESIS*RESOURCES*GENESIS*RESOURCES*</span>
-      </div>
-      
-    </div>
-
-  
-      <div class="create-container">
-        <form class="create">
-            <input type="text" placeholder="ENTER NAME">
-        </form>
-     
-        <form class="create">
-            <input type="text" placeholder="ENTER SURNAME">
-        </form>
-
-        <form class="create">
-            <input type="text" placeholder="ENTER PERSON ID">
-        </form>
-
-        <p class="join-button">
-          ADD
-        </p>
-
-      </div> 
-
-<style>
+body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  background: white;
+}
 
 .create-container {
     display: inline-block;
@@ -78,7 +40,7 @@ input[type="text"]::placeholder {
   font-family: Helvetica;
   font-weight: lighter;
   font-size: 35px;
-  margin-top: 30px;
+  margin-top: 25px;
   text-align: center;
   cursor: pointer;
 }
@@ -86,18 +48,6 @@ input[type="text"]::placeholder {
 .join-button:hover {
   opacity: 0.8;
   text-decoration: underline;
-}
-
-
-
-
-
-
-body {
-  padding: 0;
-  margin: 0;
-  height: 100%;
-  background: white;
 }
 
 /* Animace */
@@ -144,13 +94,3 @@ body {
     transform: translate(-100%, 0);
   }
 }
-</style>
-
-</body>
-
-</html>
-
-
-
-
-
