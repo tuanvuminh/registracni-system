@@ -5,19 +5,40 @@ body {
   background: white;
 }
 
-.create-container {
+.create-container, .update-container, .delete-container {
     display: inline-block;
     background-color: white;
     box-shadow: white;
-    margin-left: 150px;
     margin-top: 30px;
+    width: 262px;
+    height: 300px;
+    vertical-align: top;
+}
+
+.update-container {
+  margin-left: 150px;
+  margin-right: 175px;
+}
+
+.create-container {
+  margin-right: 150px;
+}
+
+.delete-container {
+  margin-right: 150px;
+}
+
+.find-container {
+  display: inline-block;
+  margin-top: 20px;
+  margin-left: 40px;
 }
 
 input[type="text"] {
     text-align: center;
     padding: 10px;
-    margin-bottom: 70px;
     font-size: 20px;
+    margin-bottom: 20px;
     border: white;
     color: black; 
     transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
@@ -36,18 +57,55 @@ input[type="text"]::placeholder {
     color: black; 
 }
 
-.join-button {
+input[type="text-delete"] {
+  text-align: center;
+  padding: 10px;
+  font-size: 20px;
+  margin-bottom: 150px;
+  border: white;
+  color: black; 
+  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+input[type="text-delete"]:focus {
+  outline: none; 
+  border-color: #ccc; 
+  box-shadow: 0 0 5px #aaa; 
+}
+
+input[type="text-delete"]::placeholder {
+  text-align: center;
+  font-family: Helvetica;
+  font-weight:lighter;
+  color: black; 
+}
+
+.button {
   font-family: Helvetica;
   font-weight: lighter;
   font-size: 35px;
-  margin-top: 25px;
+  width: 262px;
   text-align: center;
+  display: inline-block;
+}
+
+.span {
   cursor: pointer;
 }
 
-.join-button:hover {
+.span:hover {
+  cursor: pointer;
   opacity: 0.8;
   text-decoration: underline;
+}
+
+.link {
+  display: inline-block;
+  margin-left: 295px;
+  font-family: Helvetica;
+  font-weight: lighter;
+  font-size: 35px;
+  width: 550px;
 }
 
 /* Animace */
