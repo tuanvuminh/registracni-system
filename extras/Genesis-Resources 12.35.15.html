@@ -11,35 +11,41 @@
 
 </head>
 
+<script>
+     function openAllUsersInfo() {
+            window.open("http://localhost:8080/api/v1/users", "_blank");
+        }
+
+    function openAllUsersDetailedInfo() {
+            window.open("http://localhost:8080/api/v1/users?detail=true", "_blank");
+        }
+</script>
+
 <body>
 
-    <div class="marquee-w">
-      <div class="marquee">
-          <span>GENESIS*RESOURCES*GENESIS*RESOURCES*</span>
-      </div>
-
-      <div class="marquee marquee2">
-          <span>GENESIS*RESOURCES*GENESIS*RESOURCES*</span>
-      </div>
+<div class="marquee">
+    <div class="track">
+      <div class="content">GENESIS*RESOURCES*GENESIS*RESOURCES*GENESIS*RESOURCES*GENESIS*RESOURCES*GENESIS*RESOURCES*GENESIS*RESOURCES*GENESIS*RESOURCES*GENESIS*RESOURCES*GENESIS*RESOURCES*GENESIS*RESOURCES*</div>
     </div>
+  </div>
 
     <div class="update-container">
         <input type="text" placeholder="ENTER ID">
         <input type="text" placeholder="ENTER NEW NAME">
         <input type="text" placeholder="ENTER NEW SURNAME">
-        <p class="button"><span class="span">UPDATE</span></p>
+        <p class="button">-<span class="span">UPDATE</span>-</p>
     </div> 
 
     <div class="delete-container">
         <input type="text" placeholder="ENTER ID">
-        <p class="button"><span class="span">DELETE</span></p>
+        <p class="button">-<span class="span">DELETE</span>-</p>
     </div> 
 
     <div class="create-container">
         <input type="text" placeholder="ENTER NAME">
         <input type="text" placeholder="ENTER SURNAME">
         <input type="text" placeholder="ENTER PERSON ID">
-        <p class="button"><span class="span">ADD</span></p>
+        <p class="button">-<span class="span">ADD</span>-</p>
     </div> 
 
     <div class="find-container">
@@ -48,9 +54,15 @@
     </div> 
     
     <p class="link">
-        <span class="span">ALL USERS</span><span></span> <span class="span">DETAILED INFO</span>
+        <span class="span" onclick="openAllUsersInfo()">ALL USERS
+        </span> 
+        <span class="span" onclick="openAllUsersDetailedInfo()">DETAILED INFO
+        </span>
     </p>
     
+
+
+
 </body>
 
 </html>
