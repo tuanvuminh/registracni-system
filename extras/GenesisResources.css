@@ -20,11 +20,11 @@ body {
   margin-right: 175px;
 }
 
-.create-container {
+.delete-container {
   margin-right: 150px;
 }
 
-.delete-container {
+.create-container {
   margin-right: 150px;
 }
 
@@ -55,29 +55,6 @@ input[type="text"]::placeholder {
     font-family: Helvetica;
     font-weight:lighter;
     color: black; 
-}
-
-input[type="text-delete"] {
-  text-align: center;
-  padding: 10px;
-  font-size: 20px;
-  margin-bottom: 20px;
-  border: white;
-  color: black; 
-  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-}
-
-input[type="text-delete"]:focus {
-  outline: none; 
-  border-color: #ccc; 
-  box-shadow: 0 0 5px #aaa; 
-}
-
-input[type="text-delete"]::placeholder {
-  text-align: center;
-  font-family: Helvetica;
-  font-weight:lighter;
-  color: black; 
 }
 
 .button {
