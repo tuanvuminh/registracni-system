@@ -1,6 +1,16 @@
+<!DOCTYPE html>
+<html>
 
+<head>
+<title>
+  GENESIS RESOURCES
+</title>
+</head>
+
+<body>
 
     <div class="marquee-w">
+
       <div class="marquee">
           <span>GENESIS*RESOURCES*GENESIS*RESOURCES*</span>
       </div>
@@ -8,64 +18,46 @@
       <div class="marquee marquee2">
           <span>GENESIS*RESOURCES*GENESIS*RESOURCES*</span>
       </div>
+      
     </div>
 
   
-      <div class="center-container">
-        <form>
-            <input type="text" id="name" name="name" placeholder="ENTER YOUR NAME">
+      <div class="create-container">
+        <form class="create">
+            <input type="text" placeholder="ENTER NAME">
         </form>
-      </div>  
+     
+        <form class="create">
+            <input type="text" placeholder="ENTER SURNAME">
+        </form>
 
-      <div class="center-container2">
-        <form>
-            <input type="text2" id="name2" name="surname" placeholder="ENTER YOUR SURNAME">
+        <form class="create">
+            <input type="text" placeholder="ENTER PERSON ID">
         </form>
-      </div>  
 
-      <div class="center-container3">
-        <form>
-            <input type="text3" id="name3" name="personID" placeholder="ENTER YOUR PERSON ID">
-        </form>
+        <p class="join-button">
+          ADD
+        </p>
+
       </div> 
-
-
-
-<p class="join">
-  JOIN US
-</p>
-
 
 <style>
 
-.center-container {
-    text-align: center;
-    margin-top: 20px;
-}
-
-.center-container2 {
-    text-align: center;
-}
-
-.center-container3 {
-    text-align: center;
-}
-
-form {
+.create-container {
     display: inline-block;
-    padding: 20px;
     background-color: white;
     box-shadow: white;
+    margin-left: 150px;
+    margin-top: 30px;
 }
 
 input[type="text"] {
     text-align: center;
-    width: 100%;
     padding: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 70px;
     font-size: 20px;
     border: white;
-    color: black; /* Černá barva textu */
+    color: black; 
     transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
@@ -75,79 +67,31 @@ input[type="text"]:focus {
     box-shadow: 0 0 5px #aaa; 
 }
 
-input[type="text2"] {
-    text-align: center;
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    font-size: 20px;
-    border: white;
-    color: black; /* Černá barva textu */
-    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-}
-
-input[type="text2"]:focus {
-    outline: none; 
-    border-color: #ccc; 
-    box-shadow: 0 0 5px #aaa; 
-}
-
-input[type="text3"] {
-    text-align: center;
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    font-size: 20px;
-    border: white;
-    color: black; /* Černá barva textu */
-    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-}
-
-input[type="text3"]:focus {
-    outline: none; 
-    border-color: #ccc; 
-    box-shadow: 0 0 5px #aaa; 
-}
-
 input[type="text"]::placeholder {
     text-align: center;
     font-family: Helvetica;
     font-weight:lighter;
-    color: black; /* Černá barva placeholderu */
+    color: black; 
 }
 
-input[type="text2"]::placeholder {
-    text-align: center;
-    font-family: Helvetica;
-    font-weight:lighter;
-    color: black; /* Černá barva placeholderu */
-}
-
-input[type="text3"]::placeholder {
-    text-align: center;
-    font-family: Helvetica;
-    font-weight:lighter;
-    color: black; /* Černá barva placeholderu */
-}
-
-.join {
+.join-button {
   font-family: Helvetica;
   font-weight: lighter;
   font-size: 35px;
-
+  margin-top: 30px;
   text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  margin-top: 50px;
   cursor: pointer;
 }
 
-.join:hover {
+.join-button:hover {
   opacity: 0.8;
   text-decoration: underline;
 }
+
+
+
+
+
 
 body {
   padding: 0;
@@ -155,6 +99,8 @@ body {
   height: 100%;
   background: white;
 }
+
+/* Animace */
 
 .marquee-w {
   margin-top: 30px;
@@ -199,6 +145,10 @@ body {
   }
 }
 </style>
+
+</body>
+
+</html>
 
 
 
