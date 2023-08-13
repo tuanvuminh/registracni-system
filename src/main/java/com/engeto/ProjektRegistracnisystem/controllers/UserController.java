@@ -13,17 +13,17 @@ public class UserController {
     @Autowired
     private UserService userService;
     public static final String NOT_FOUND = "User was not found in database.";
-    public static ApiResponse CREATED = new ApiResponse(true,
+    public static final ApiResponse CREATED = new ApiResponse(true,
             "User was added successfully.");
-    public static ApiResponse NOT_CREATED = new ApiResponse(false,
+    public static final ApiResponse NOT_CREATED = new ApiResponse(false,
             "User could not be added.");
-    public static ApiResponse UPDATED = new ApiResponse(true,
+    public static final ApiResponse UPDATED = new ApiResponse(true,
             "User was updated successfully.");
-    public static ApiResponse NOT_UPDATED = new ApiResponse(false,
+    public static final ApiResponse NOT_UPDATED = new ApiResponse(false,
             NOT_FOUND);
-    public static ApiResponse DELETED = new ApiResponse(true,
+    public static final ApiResponse DELETED = new ApiResponse(true,
             "User was deleted successfully.");
-    public static ApiResponse NOT_DELETED = new ApiResponse(false,
+    public static final ApiResponse NOT_DELETED = new ApiResponse(false,
             NOT_FOUND);
 
     // Založení nového uživatele POST api/v1/user
