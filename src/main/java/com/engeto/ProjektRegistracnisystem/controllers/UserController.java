@@ -12,13 +12,19 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
-    public static final ApiResponse NOT_FOUND = new ApiResponse("User was not found in database.");
-    public static final ApiResponse CREATED = new ApiResponse("User was added successfully.");
-    public static final ApiResponse NOT_CREATED = new ApiResponse("User could not be added.");
-    public static final ApiResponse UPDATED = new ApiResponse("User was updated successfully.");
-    public static final ApiResponse NOT_UPDATED = new ApiResponse("User could not be updated.");
-    public static final ApiResponse DELETED = new ApiResponse("User was deleted successfully.");
-    public static final ApiResponse NOT_DELETED = new ApiResponse("User could not be deleted.");
+    public static final String NOT_FOUND = "User was not found in database.";
+    public static final ApiResponse CREATED = new ApiResponse(true,
+            "User was added successfully.");
+    public static final ApiResponse NOT_CREATED = new ApiResponse(false,
+            "User could not be added.");
+    public static final ApiResponse UPDATED = new ApiResponse(true,
+            "User was updated successfully.");
+    public static final ApiResponse NOT_UPDATED = new ApiResponse(false,
+            NOT_FOUND);
+    public static final ApiResponse DELETED = new ApiResponse(true,
+            "User was deleted successfully.");
+    public static final ApiResponse NOT_DELETED = new ApiResponse(false,
+            NOT_FOUND);
 
     // Založení nového uživatele POST api/v1/user
     @PostMapping("/user")
