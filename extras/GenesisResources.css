@@ -6,13 +6,13 @@ body {
 }
 
 .create-container, .update-container, .delete-container {
-    display: inline-block;
-    background-color: white;
-    box-shadow: white;
-    margin-top: 0px;
-    width: 300px;
-    height: 300px;
-    vertical-align: top;
+  display: inline-block;
+  background-color: white;
+  box-shadow: white;
+  margin-top: 0px;
+  width: 300px;
+  height: 300px;
+  vertical-align: top;
 }
 
 .update-container {
@@ -31,26 +31,26 @@ body {
 }
 
 input[type="text"] {
-    text-align: center;
-    padding: 10px;
-    font-size: 25px;
-    margin-bottom: 20px;
-    border: white;
-    color: black; 
-    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  text-align: center;
+  padding: 10px;
+  font-size: 25px;
+  margin-bottom: 20px;
+  border: white;
+  color: black; 
+  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 input[type="text"]:focus {
-    outline: none; 
-    border-color: #ccc; 
-    box-shadow: 0 0 5px #cfcdcd; 
+  outline: none; 
+  border-color: #ccc; 
+  box-shadow: 0 0 5px #cfcdcd; 
 }
 
 input[type="text"]::placeholder {
-    text-align: center;
-    font-family: Helvetica;
-    font-weight:lighter;
-    color: black; 
+  text-align: center;
+  font-family: Helvetica;
+  font-weight:lighter;
+  color: black; 
 }
 
 input[type="text"]:focus::placeholder {
