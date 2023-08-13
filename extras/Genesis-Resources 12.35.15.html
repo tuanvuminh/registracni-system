@@ -75,9 +75,9 @@
                 if (user != null) {
                     userDetailsElement.innerHTML = `
                     <div style="text-align: center;">
-                        <p style="font-family: Helvetica; font-weight: 400; font-size: 18px; display: inline-block; margin-right: 5px;">ID: ${user.id}</p>
-                        <p style="font-family: Helvetica; font-weight: 400; font-size: 18px; display: inline-block; margin-right: 5px;">Name: ${user.name}</p>
-                        <p style="font-family: Helvetica; font-weight: 400; font-size: 18px; display: inline-block; margin-right: 5px;">Surname: ${user.surname}</p>
+                        <p style="font-family: Helvetica; font-weight: 500; font-size: 18px; display: inline-block; margin-right: 5px;">ID: ${user.id}</p>
+                        <p style="font-family: Helvetica; font-weight: 500; font-size: 18px; display: inline-block; margin-right: 5px;">Name: ${user.name}</p>
+                        <p style="font-family: Helvetica; font-weight: 500; font-size: 18px; display: inline-block; margin-right: 5px;">Surname: ${user.surname}</p>
                     </div>
                     `;
                 } else {
@@ -85,7 +85,6 @@
                 }
             } catch (error) {
                 userDetailsElement.innerHTML = "User was not found in database.";
-        console.error("User was not found in database.");
             }
         });
         
@@ -113,7 +112,6 @@
                 }
             } catch (error) {
                 userDetailsElement.innerHTML = "User was not found in database.";
-        console.error("User was not found in database.");
             }
         });
         
@@ -122,77 +120,81 @@
             const nameOfUser = document.getElementById("nameOfUser").value;
             const surnameOfUser = document.getElementById("surnameOfUser").value;
             const personID = document.getElementById("personID").value;
-    
-            const userData = {
-                name: nameOfUser,
-                surname: surnameOfUser,
-                personID: personID
-            };
 
-            const response = await fetch('http://localhost:8080/api/v1/user', {
-                method: "POST",
-                headers: {"Content-Type": "application/json"},body: JSON.stringify(userData)
+        const userData = {
+            name: nameOfUser,
+            surname: surnameOfUser,
+            personID: personID
+        };
+
+        const response = await fetch('http://localhost:8080/api/v1/user', {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(userData)
         });
 
-            if (response.status === 201) {
-                alert("User was added successfully.");
-            } else if (response.status === 500) {
-                alert("Person ID is not valid.");
-            } else {
-                alert("An error occurred: " + response.statusText);
-            }
+        const apiResponse = await response.json(); 
+
+        if (response.ok) {
+            alert(apiResponse.message);
+        } else {
+            alert(apiResponse.message);
+        }
         });
+
         
         // UPDATE User
         document.getElementById("updateUser").addEventListener("click", async () => {
-    const userIdToUpdate = document.getElementById("userIdToUpdate").value;
-    const updatedName = document.getElementById("newName").value;
-    const updatedSurname = document.getElementById("newSurname").value;
-    
-    const updatedUserData = {
-        name: updatedName,
-        surname: updatedSurname
-    };
+            const userIdToUpdate = document.getElementById("userIdToUpdate").value;
+            const updatedName = document.getElementById("newName").value;
+            const updatedSurname = document.getElementById("newSurname").value;
 
-    try {
-        const response = await fetch(`http://localhost:8080/api/v1/user/${userIdToUpdate}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(updatedUserData)
-        });
+        const updatedUserData = {
+            name: updatedName,
+            surname: updatedSurname
+        };
 
-        if (response.ok) {
-            alert("User was updated successfully.");
-        } else {
-            const errorData = await response.text();
-            alert("User was not found in database");
+        try {
+            const response = await fetch(`http://localhost:8080/api/v1/user/${userIdToUpdate}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(updatedUserData)
+            });
+
+            const apiResponse = await response.json(); 
+
+            if (response.ok) {
+                alert(apiResponse.message);
+            } else {
+                alert(apiResponse.message);
+            }
+        } catch (error) {
+            alert("An error occurred: " + error.message);
         }
-    } catch (error) {
-        alert("An error occurred: " + error.message);
-    }
-});
+        });
 
         // DELETE User
         document.getElementById("deleteUser").addEventListener("click", async () => {
-    const userIdToDelete = document.getElementById("ID").value;
+            const userIdToDelete = document.getElementById("ID").value;
 
-    try {
-        const response = await fetch(`http://localhost:8080/api/v1/user/${userIdToDelete}`, {
-            method: "DELETE"
-        });
+        try {
+            const response = await fetch(`http://localhost:8080/api/v1/user/${userIdToDelete}`, {
+                method: "DELETE"
+            });
 
-        if (response.ok) {
-            alert("User was deleted successfully.");
-        } else {
-            const errorData = await response.text();
-            alert("User was not found in database.");
+            const apiResponse = await response.json();
+
+            if (response.ok) {
+                alert(apiResponse.message);
+            } else {
+                alert(apiResponse.message);
+            }
+        } catch (error) {
+            alert("An error occurred: " + error.message);
         }
-    } catch (error) {
-        alert("An error occurred: " + error.message);
-    }
-});
+        });
         
         // Funkce pro získání seznamů
         function openAllUsersInfo() {
@@ -207,7 +209,6 @@
         circ.raduis(360);
 
     </script>
-
 
 </body>
 

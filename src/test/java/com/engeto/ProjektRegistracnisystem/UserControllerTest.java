@@ -3,6 +3,7 @@ import com.engeto.ProjektRegistracnisystem.controllers.UserController;
 import com.engeto.ProjektRegistracnisystem.exceptions.UserException;
 import com.engeto.ProjektRegistracnisystem.model.User;
 import com.engeto.ProjektRegistracnisystem.service.UserService;
+import com.engeto.ProjektRegistracnisystem.settings.ApiResponse;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.engeto.ProjektRegistracnisystem.controllers.UserController.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -30,11 +33,11 @@ public class UserControllerTest {
         when(userService.createUser(any())).thenReturn(1);
 
         // Test
-        ResponseEntity<String> test = userController.addNewUser(user);
+        ResponseEntity<ApiResponse> test = userController.addNewUser(user);
 
         // Ověření
         assertEquals(HttpStatus.CREATED, test.getStatusCode());
-        assertEquals("User was added successfully.", test.getBody());
+        assertEquals(CREATED, test.getBody());
 
         verify(userService, times(1)).createUser(any());
     }
@@ -65,7 +68,7 @@ public class UserControllerTest {
 
         // Ověření
         assertEquals(HttpStatus.NOT_FOUND, test.getStatusCode());
-        assertEquals("User with ID 1 was not found.", test.getBody());
+        assertEquals(NOT_FOUND, test.getBody());
 
         verify(userService, times(1)).getUserDetails(anyLong(), anyBoolean());
     }
@@ -95,11 +98,11 @@ public class UserControllerTest {
 
         // Test
         User updatedUserData = new User(1L,"John", "Smith");
-        ResponseEntity<String> test = userController.updateUser(1L, updatedUserData);
+        ResponseEntity<ApiResponse> test = userController.updateUser(1L, updatedUserData);
 
         // Ověření
         assertEquals(HttpStatus.OK, test.getStatusCode());
-        assertEquals("User was updated successfully.", test.getBody());
+        assertEquals(UPDATED, test.getBody());
 
         verify(userService, times(1)).getUserDetails(anyLong(), anyBoolean());
         verify(userService, times(1)).updateUser(any());
@@ -112,11 +115,11 @@ public class UserControllerTest {
 
         // Test
         User updatedUserData = new User(50L,"John", "Smith");
-        ResponseEntity<String> test = userController.updateUser(50L, updatedUserData);
+        ResponseEntity<ApiResponse> test = userController.updateUser(50L, updatedUserData);
 
         // Ověření
         assertEquals(HttpStatus.NOT_FOUND, test.getStatusCode());
-        assertEquals("User with ID 50 was not found.", test.getBody());
+        assertEquals(NOT_UPDATED, test.getBody());
 
         verify(userService, times(1)).getUserDetails(anyLong(), anyBoolean());
         verify(userService, never()).updateUser(any());
@@ -128,11 +131,11 @@ public class UserControllerTest {
         when(userService.deleteUserByID(anyLong())).thenReturn(1);
 
         // Test
-        ResponseEntity<String> test = userController.deleteUserById(1L);
+        ResponseEntity<ApiResponse> test = userController.deleteUserById(1L);
 
         // Ověření
         assertEquals(HttpStatus.OK, test.getStatusCode());
-        assertEquals("User was deleted successfully.", test.getBody());
+        assertEquals(DELETED, test.getBody());
 
         verify(userService, times(1)).deleteUserByID(anyLong());
     }
@@ -143,11 +146,11 @@ public class UserControllerTest {
         when(userService.deleteUserByID(anyLong())).thenReturn(0);
 
         // Test
-        ResponseEntity<String> test = userController.deleteUserById(1L);
+        ResponseEntity<ApiResponse> test = userController.deleteUserById(1L);
 
         // Ověření
         assertEquals(HttpStatus.NOT_FOUND, test.getStatusCode());
-        assertEquals("User with ID 1 was not found.", test.getBody());
+        assertEquals(NOT_DELETED, test.getBody());
 
         verify(userService, times(1)).deleteUserByID(anyLong());
     }

@@ -1,18 +1,10 @@
 package com.engeto.ProjektRegistracnisystem.model;
-
 import com.engeto.ProjektRegistracnisystem.exceptions.UserException;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
-
 public class User {
+
     private Long ID;
     private String name;
     private String surname;
@@ -38,7 +30,7 @@ public class User {
     // Ověření zda je personID validní a zda obsahuje 12 znaků.
     public void setPersonID(String personID) throws UserException {
         if (!isValidPersonID(personID)) {
-            throw new UserException("User could not be added, because personID is not valid.");
+            throw new UserException("Person ID is not valid.");
         }
         this.personID = personID;
     }
