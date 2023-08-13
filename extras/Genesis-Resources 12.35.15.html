@@ -18,6 +18,15 @@
     function openAllUsersDetailedInfo() {
             window.open("http://localhost:8080/api/v1/users?detail=true", "_blank");
         }
+
+    async function sendRequest() {
+      const ID = document.getElementById("ID").value
+      data = '{ "ID": "' + ID + '"}'
+
+      await fetch('http://localhost:8080/api/v1/user/{ID}',
+       { method :"DELETE", body: JSON.stringify(data)}
+      )
+      }
 </script>
 
 <body>
@@ -37,7 +46,7 @@
 
     <div class="delete-container">
         <input type="text" placeholder="ENTER ID">
-        <p class="button">-<span class="span">DELETE</span>-</p>
+        <p class="button">-<span class="span" onclick=""sendRequestDelete()"">DELETE</span>-</p>
     </div> 
 
     <div class="create-container">
