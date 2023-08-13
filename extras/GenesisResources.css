@@ -54,7 +54,7 @@ input[type="text"]::placeholder {
 }
 
 input[type="text"]:focus::placeholder {
-  color: rgb(131, 116, 116); 
+  color: rgb(163, 152, 152); 
 }
 
 .button {
