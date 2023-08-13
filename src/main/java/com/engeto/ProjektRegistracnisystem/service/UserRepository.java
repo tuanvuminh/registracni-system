@@ -4,6 +4,7 @@ import com.engeto.ProjektRegistracnisystem.model.User;
 import java.util.List;
 
 public interface UserRepository {
+
     int createUser(User user);
 
     Object getUserDetails(Long ID, boolean detail);

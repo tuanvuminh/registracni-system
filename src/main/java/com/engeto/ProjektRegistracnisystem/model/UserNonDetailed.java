@@ -1,6 +1,7 @@
 package com.engeto.ProjektRegistracnisystem.model;
 
 public class UserNonDetailed {
+
     private Long ID;
     private String name;
     private String surname;
