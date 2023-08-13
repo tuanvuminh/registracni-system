@@ -8,57 +8,42 @@
 </title>
 
 <link rel="stylesheet" href="GenesisResources.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/circletype@2.3.0/dist/circletype.min.js"></script>
 
 </head>
 
-<script>
-    function openAllUsersInfo() {
-            window.open("http://localhost:8080/api/v1/users", "_blank");
-        }
-    function openAllUsersDetailedInfo() {
-            window.open("http://localhost:8080/api/v1/users?detail=true", "_blank");
-        }
-
-    async function sendRequest() {
-      const ID = document.getElementById("ID").value
-      data = '{ "ID": "' + ID + '"}'
-
-      await fetch('http://localhost:8080/api/v1/user/{ID}',
-       { method :"DELETE", body: JSON.stringify(data)}
-      )
-      }
-</script>
-
 <body>
 
-<div class="marquee">
-    <div class="track">
-      <div class="content">GENESIS*RESOURCES*GENESIS*RESOURCES*GENESIS*RESOURCES*GENESIS*RESOURCES*GENESIS*RESOURCES*GENESIS*RESOURCES*GENESIS*RESOURCES*GENESIS*RESOURCES*GENESIS*RESOURCES*GENESIS*RESOURCES*</div>
+    <div class="marquee">
+        <div class="track">
+          <div class="content">GENESIS*RESOURCES*GENESIS*RESOURCES*GENESIS*RESOURCES*GENESIS*RESOURCES*GENESIS*RESOURCES*GENESIS*RESOURCES*GENESIS*RESOURCES*GENESIS*RESOURCES*GENESIS*RESOURCES*GENESIS*RESOURCES*</div>
+        </div>
     </div>
-  </div>
 
     <div class="update-container">
-        <input type="text" placeholder="ENTER ID">
-        <input type="text" placeholder="ENTER NEW NAME">
-        <input type="text" placeholder="ENTER NEW SURNAME">
-        <p class="button">-<span class="span">UPDATE</span>-</p>
+        <input type="text" id="userIdToUpdate" placeholder="ENTER ID">
+        <input type="text" id="newName" placeholder="ENTER NEW NAME">
+        <input type="text" id="newSurname" placeholder="ENTER NEW SURNAME">
+        <p class="button">-<span class="span" id="updateUser">UPDATE</span>-</p>
     </div> 
 
     <div class="delete-container">
-        <input type="text" placeholder="ENTER ID">
-        <p class="button">-<span class="span" onclick=""sendRequestDelete()"">DELETE</span>-</p>
+        <input type="text" id="ID" placeholder="ENTER ID">
+        <p class="button">-<span class="span" id="deleteUser">DELETE</span>-</p>
     </div> 
 
     <div class="create-container">
-        <input type="text" placeholder="ENTER NAME">
-        <input type="text" placeholder="ENTER SURNAME">
-        <input type="text" placeholder="ENTER PERSON ID">
-        <p class="button">-<span class="span">ADD</span>-</p>
+        <input type="text" id="nameOfUser" placeholder="ENTER NAME">
+        <input type="text" id="surnameOfUser" placeholder="ENTER SURNAME">
+        <input type="text" id="personID" placeholder="ENTER PERSON ID">
+        <p class="button">-<span class="span" id="addNewUser">ADD</span>-</p>
     </div> 
 
     <div class="find-container">
-        <input type="text" placeholder="ENTER ID">
-        <p class="button"><span class="span">USER</span> <span class="span">DETAILED INFO</span></p>
+        <input type="text" id="userId" placeholder="ENTER ID">
+        <p class="button"><span class="span" id="findButtonNonDetailed">USER
+        </span> <span class="span" id="findButtonDetailed">DETAILED INFO</span></p>
     </div> 
     
     <p class="link">
@@ -71,26 +56,159 @@
     <div id="circ">
         &nbsp;GENESIS.RESOURCES.WELCOME.TO.THE.NEW.WORLD.
     </div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/circletype@2.3.0/dist/circletype.min.js"></script>
-
-<script>
-    let circ = new CircleType(document.getElementById('circ'));
-    circ.raduis(360);
-</script>
     
+    <div id="userNonDetailed" class="dataFromSQL"></div>
 
+    <div id="userDetailed" class="detailedDataFromSQL"></div>
     
+    <script>
+        
+        // GET UsersNonDetailedInfo
+        document.getElementById("findButtonNonDetailed").addEventListener("click", async () => {
+            const userId = document.getElementById("userId").value;
+            const userDetailsElement = document.getElementById("userNonDetailed");
+            
+            try {
+                const response = await fetch(`http://localhost:8080/api/v1/user/${userId}`);
+                const user = await response.json();
+                
+                if (user != null) {
+                    userDetailsElement.innerHTML = `
+                    <div style="text-align: center;">
+                        <p style="font-family: Helvetica; font-weight: 400; font-size: 18px; display: inline-block; margin-right: 5px;">ID: ${user.id}</p>
+                        <p style="font-family: Helvetica; font-weight: 400; font-size: 18px; display: inline-block; margin-right: 5px;">Name: ${user.name}</p>
+                        <p style="font-family: Helvetica; font-weight: 400; font-size: 18px; display: inline-block; margin-right: 5px;">Surname: ${user.surname}</p>
+                    </div>
+                    `;
+                } else {
+                    userDetailsElement.innerHTML = "User was not found in database.";
+                }
+            } catch (error) {
+                userDetailsElement.innerHTML = "User was not found in database.";
+        console.error("User was not found in database.");
+            }
+        });
+        
+        // GET UsersDetailedInfo
+        document.getElementById("findButtonDetailed").addEventListener("click", async () => {
+            const userId = document.getElementById("userId").value;
+            const userDetailsElement = document.getElementById("userDetailed");
+            
+            try {
+                const response = await fetch(`http://localhost:8080/api/v1/user/${userId}?detail=true`);
+                const user = await response.json();
+                
+                if (user != null) {
+                    userDetailsElement.innerHTML = `
+                    <div style="text-align: center;">
+                        <p style="font-family: Helvetica; font-weight: 300; font-size: 18px; line-height: 0px; display: inline-block; margin-right: 5px;">ID: ${user.id}</p>
+                        <p style="font-family: Helvetica; font-weight: 300; font-size: 18px; line-height: 0px; display: inline-block; margin-right: 5px;">Name: ${user.name}</p>
+                        <p style="font-family: Helvetica; font-weight: 300; font-size: 18px; line-height: 0px; display: inline-block; margin-right: 5px;">Surname: ${user.surname}</p>
+                        <p style="font-family: Helvetica; font-weight: 300; font-size: 18px; line-height: 0px; display: inline-block; margin-right: 5px;">Person ID: ${user.personID}<p>
+                        <p style="font-family: Helvetica; font-weight: 300; font-size: 18px; line-height: 0px; display: inline-block; margin-right: 5px;">UUID: ${user.uuid}<p>
+                    </div>
+                    `;
+                } else {
+                    userDetailsElement.innerHTML = "User was not found in database.";
+                }
+            } catch (error) {
+                userDetailsElement.innerHTML = "User was not found in database.";
+        console.error("User was not found in database.");
+            }
+        });
+        
+        // POST Create new user
+        document.getElementById("addNewUser").addEventListener("click", async () => {
+            const nameOfUser = document.getElementById("nameOfUser").value;
+            const surnameOfUser = document.getElementById("surnameOfUser").value;
+            const personID = document.getElementById("personID").value;
     
+            const userData = {
+                name: nameOfUser,
+                surname: surnameOfUser,
+                personID: personID
+            };
 
+            const response = await fetch('http://localhost:8080/api/v1/user', {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},body: JSON.stringify(userData)
+        });
+
+            if (response.status === 201) {
+                alert("User was added successfully.");
+            } else if (response.status === 500) {
+                alert("Person ID is not valid.");
+            } else {
+                alert("An error occurred: " + response.statusText);
+            }
+        });
+        
+        // UPDATE User
+        document.getElementById("updateUser").addEventListener("click", async () => {
+    const userIdToUpdate = document.getElementById("userIdToUpdate").value;
+    const updatedName = document.getElementById("newName").value;
+    const updatedSurname = document.getElementById("newSurname").value;
+    
+    const updatedUserData = {
+        name: updatedName,
+        surname: updatedSurname
+    };
+
+    try {
+        const response = await fetch(`http://localhost:8080/api/v1/user/${userIdToUpdate}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(updatedUserData)
+        });
+
+        if (response.ok) {
+            alert("User was updated successfully.");
+        } else {
+            const errorData = await response.text();
+            alert("User was not found in database");
+        }
+    } catch (error) {
+        alert("An error occurred: " + error.message);
+    }
+});
+
+        // DELETE User
+        document.getElementById("deleteUser").addEventListener("click", async () => {
+    const userIdToDelete = document.getElementById("ID").value;
+
+    try {
+        const response = await fetch(`http://localhost:8080/api/v1/user/${userIdToDelete}`, {
+            method: "DELETE"
+        });
+
+        if (response.ok) {
+            alert("User was deleted successfully.");
+        } else {
+            const errorData = await response.text();
+            alert("User was not found in database.");
+        }
+    } catch (error) {
+        alert("An error occurred: " + error.message);
+    }
+});
+        
+        // Funkce pro získání seznamů
+        function openAllUsersInfo() {
+            window.open("http://localhost:8080/api/v1/users", "_blank");
+        }
+        function openAllUsersDetailedInfo() {
+            window.open("http://localhost:8080/api/v1/users?detail=true", "_blank");
+        }
+
+        // Animace
+        let circ = new CircleType(document.getElementById('circ'));
+        circ.raduis(360);
+
+    </script>
 
 
 </body>
 
 </html>
-
-
-
-
-
