@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class ExceptionControllerAdvice {
-
     @ExceptionHandler(UserException.class)
     public ResponseEntity<ApiResponse> handleInvalidPersonIDException(UserException e) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse(

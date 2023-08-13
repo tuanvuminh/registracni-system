@@ -10,7 +10,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1")
 public class UserController {
-
     @Autowired
     private UserService userService;
     public static final String NOT_FOUND = "User was not found in database.";

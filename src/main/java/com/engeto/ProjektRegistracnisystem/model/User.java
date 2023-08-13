@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 public class User {
-
     private Long ID;
     private String name;
     private String surname;

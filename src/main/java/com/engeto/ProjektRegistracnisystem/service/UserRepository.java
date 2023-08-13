@@ -2,7 +2,6 @@ package com.engeto.ProjektRegistracnisystem.service;
 
 import com.engeto.ProjektRegistracnisystem.model.User;
 import java.util.List;
-
 public interface UserRepository {
 
     int createUser(User user);
