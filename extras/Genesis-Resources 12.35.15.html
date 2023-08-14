@@ -15,57 +15,65 @@
 
 <body>
 
-    <div class="marquee">
+    <header class="marquee">
         <div class="track">
           <div class="content">GENESIS*RESOURCES*GENESIS*RESOURCES*GENESIS*RESOURCES*GENESIS*RESOURCES*GENESIS*RESOURCES*GENESIS*RESOURCES*GENESIS*RESOURCES*GENESIS*RESOURCES*GENESIS*RESOURCES*GENESIS*RESOURCES*</div>
         </div>
-    </div>
+    </header>
 
-    <div class="update-container">
-        <input type="text" id="userIdToUpdate" placeholder="ENTER ID">
-        <input type="text" id="newName" placeholder="ENTER NEW NAME">
-        <input type="text" id="newSurname" placeholder="ENTER NEW SURNAME">
-        <p class="button">-<span class="span" id="updateUser">UPDATE</span>-</p>
-    </div> 
+    <main style="
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 50px;
+    ">
 
-    <div class="delete-container">
-        <input type="text" id="ID" placeholder="ENTER ID">
-        <p class="button">-<span class="span" id="deleteUser">DELETE</span>-</p>
-    </div> 
+        <section class="update-container">
+            <input type="text" id="userIdToUpdate" placeholder="ENTER ID">
+            <input type="text" id="newName" placeholder="ENTER NEW NAME">
+            <input type="text" id="newSurname" placeholder="ENTER NEW SURNAME">
+            <p class="button">-<span class="span" id="updateUser">UPDATE</span>-</p>
+        </section> 
 
-    <div class="create-container">
-        <input type="text" id="nameOfUser" placeholder="ENTER NAME">
-        <input type="text" id="surnameOfUser" placeholder="ENTER SURNAME">
-        <input type="text" id="personID" placeholder="ENTER PERSON ID">
-        <p class="button">-<span class="span" id="addNewUser">ADD</span>-</p>
-    </div> 
+        <section class="delete-container">
+            <input type="text" id="ID" placeholder="ENTER ID">
+            <p class="button">-<span class="span" id="deleteUser">DELETE</span>-</p>
+            <div id="userNonDetailed" class="dataFromSQL"></div>
+            <div id="userDetailed" class="detailedDataFromSQL"></div>
+        </section> 
 
-    <div class="find-container">
-        <input type="text" id="userId" placeholder="ENTER ID">
-        <p class="button">
-          <span class="span" id="findButtonNonDetailed">
-          USER</span> <span class="span" id="findButtonDetailed">
-          DETAILED INFO</span>
-        </p>
-    </div> 
-    
-    <p class="link">
-        <span class="span" onclick="openAllUsersInfo()">
-          ALL USERS
-        </span> 
-        <span class="span" onclick="openAllUsersDetailedInfo()">
-          DETAILED INFO
-        </span>
-    </p>
+        <section class="create-container">
+            <input type="text" id="nameOfUser" placeholder="ENTER NAME">
+            <input type="text" id="surnameOfUser" placeholder="ENTER SURNAME">
+            <input type="text" id="personID" placeholder="ENTER PERSON ID">
+            <p class="button">-<span class="span" id="addNewUser">ADD</span>-</p>
+        </section> 
 
-    <div id="circ">
-        &nbsp;GENESIS.RESOURCES.WELCOME.TO.THE.NEW.WORLD.
-    </div>
-    
-    <div id="userNonDetailed" class="dataFromSQL"></div>
+        <section class="find-container">
+            <input type="text" id="userId" placeholder="ENTER ID">
+            <p class="button">
+                <span class="span" id="findButtonNonDetailed">
+                USER</span> <span class="span" id="findButtonDetailed">
+                DETAILED INFO</span>
+            </p>
+        </section>
 
-    <div id="userDetailed" class="detailedDataFromSQL"></div>
-    
+        <section class="circle-animation" id="circ">
+            &nbsp;GENESIS.RESOURCES.WELCOME.TO.THE.NEW.WORLD.
+        </section>
+            
+        <section class="find-users-container">
+            <p class="link">
+                <span class="span" onclick="openAllUsersInfo()">
+                ALL USERS
+                </span> 
+                <span class="span" onclick="openAllUsersDetailedInfo()">
+                DETAILED INFO
+                </span>
+            </p>
+        </section>
+
+    </main>
+
     <script>
 
         // POST Create new user
@@ -107,9 +115,9 @@
                 if (user != null) {
                     userDetailsElement.innerHTML = `
                     <div style="text-align: center;">
-                        <p style="font-family: Helvetica; font-weight: 500; font-size: 18px; display: inline-block; margin-right: 5px;">ID: ${user.id}</p>
-                        <p style="font-family: Helvetica; font-weight: 500; font-size: 18px; display: inline-block; margin-right: 5px;">Name: ${user.name}</p>
-                        <p style="font-family: Helvetica; font-weight: 500; font-size: 18px; display: inline-block; margin-right: 5px;">Surname: ${user.surname}</p>
+                        <p style="font-family: Helvetica; font-weight: 500; font-size: 16px; display: inline-block; margin-right: 5px;">ID: ${user.id}</p>
+                        <p style="font-family: Helvetica; font-weight: 500; font-size: 16px; display: inline-block; margin-right: 5px;">Name: ${user.name}</p>
+                        <p style="font-family: Helvetica; font-weight: 500; font-size: 16px; display: inline-block; margin-right: 5px;">Surname: ${user.surname}</p>
                     </div>
                     `;
                 } else {
@@ -132,11 +140,11 @@
                 if (user != null) {
                     userDetailsElement.innerHTML = `
                     <div style="text-align: center;">
-                        <p style="font-family: Helvetica; font-weight: 300; font-size: 18px; line-height: 0px; display: inline-block; margin-right: 5px;">ID: ${user.id}</p>
-                        <p style="font-family: Helvetica; font-weight: 300; font-size: 18px; line-height: 0px; display: inline-block; margin-right: 5px;">Name: ${user.name}</p>
-                        <p style="font-family: Helvetica; font-weight: 300; font-size: 18px; line-height: 0px; display: inline-block; margin-right: 5px;">Surname: ${user.surname}</p>
-                        <p style="font-family: Helvetica; font-weight: 300; font-size: 18px; line-height: 0px; display: inline-block; margin-right: 5px;">Person ID: ${user.personID}<p>
-                        <p style="font-family: Helvetica; font-weight: 300; font-size: 18px; line-height: 0px; display: inline-block; margin-right: 5px;">UUID: ${user.uuid}<p>
+                        <p style="font-family: Helvetica; font-weight: 300; font-size: 16px; line-height: 0px; display: inline-block; margin-right: 5px;">ID: ${user.id}</p>
+                        <p style="font-family: Helvetica; font-weight: 300; font-size: 16px; line-height: 0px; display: inline-block; margin-right: 5px;">Name: ${user.name}</p>
+                        <p style="font-family: Helvetica; font-weight: 300; font-size: 16px; line-height: 0px; display: inline-block; margin-right: 5px;">Surname: ${user.surname}</p>
+                        <p style="font-family: Helvetica; font-weight: 300; font-size: 16px; line-height: 0px; display: inline-block; margin-right: 5px;">Person ID: ${user.personID}<p>
+                        <p style="font-family: Helvetica; font-weight: 300; font-size: 16px; line-height: 0px; display: inline-block; margin-right: 5px;">UUID: ${user.uuid}<p>
                     </div>
                     `;
                 } else {
