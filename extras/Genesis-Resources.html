@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>
+  GENESIS RESOURCES
+</title>
+
+<link rel="stylesheet" href="GenesisResources.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/circletype@2.3.0/dist/circletype.min.js"></script>
+
+</head>
+
+<body>
+
+    <header class="marquee">
+        <div class="track">
+          <div class="content">GENESIS*RESOURCES*GENESIS*RESOURCES*GENESIS*RESOURCES*GENESIS*RESOURCES*GENESIS*RESOURCES*GENESIS*RESOURCES*GENESIS*RESOURCES*GENESIS*RESOURCES*GENESIS*RESOURCES*GENESIS*RESOURCES*</div>
+        </div>
+    </header>
+
+    <main style="
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 50px;
+    ">
+
+        <section class="update-container">
+            <input type="text" id="userIdToUpdate" placeholder="ENTER ID">
+            <input type="text" id="newName" placeholder="ENTER NEW NAME">
+            <input type="text" id="newSurname" placeholder="ENTER NEW SURNAME">
+            <p class="button">-<span class="span" id="updateUser">UPDATE</span>-</p>
+        </section> 
+
+        <section class="delete-container">
+            <input type="text" id="ID" placeholder="ENTER ID">
+            <p class="button">-<span class="span" id="deleteUser">DELETE</span>-</p>
+            <div id="userNonDetailed" class="dataFromSQL"></div>
+            <div id="userDetailed" class="detailedDataFromSQL"></div>
+        </section> 
+
+        <section class="create-container">
+            <input type="text" id="nameOfUser" placeholder="ENTER NAME">
+            <input type="text" id="surnameOfUser" placeholder="ENTER SURNAME">
+            <input type="text" id="personID" placeholder="ENTER PERSON ID">
+            <p class="button">-<span class="span" id="addNewUser">ADD</span>-</p>
+        </section> 
+
+        <section class="find-container">
+            <input type="text" id="userId" placeholder="ENTER ID">
+            <p class="button">
+                <span class="span" id="findButtonNonDetailed">
+                USER</span> <span class="span" id="findButtonDetailed">
+                DETAILED INFO</span>
+            </p>
+        </section>
+
+        <section class="circle-animation" id="circ">
+            &nbsp;GENESIS.RESOURCES.WELCOME.TO.THE.NEW.WORLD.
+        </section>
+            
+        <section class="find-users-container">
+            <p class="link">
+                <span class="span" onclick="openAllUsersInfo()">
+                ALL USERS
+                </span> 
+                <span class="span" onclick="openAllUsersDetailedInfo()">
+                DETAILED INFO
+                </span>
+            </p>
+        </section>
+
+    </main>
+
+    <script>
+
+        // POST Create new user
+        document.getElementById("addNewUser").addEventListener("click", async () => {
+            const nameOfUser = document.getElementById("nameOfUser").value;
+            const surnameOfUser = document.getElementById("surnameOfUser").value;
+            const personID = document.getElementById("personID").value;
+
+        const userData = {
+            name: nameOfUser,
+            surname: surnameOfUser,
+            personID: personID
+        };
+
+        const response = await fetch('http://localhost:8080/api/v1/user', {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(userData)
+        });
+
+        const apiResponse = await response.json(); 
+
+        if (response.ok) {
+            alert(apiResponse.message);
+        } else {
+            alert(apiResponse.message);
+        }
+        });
+        
+        // GET UsersNonDetailedInfo
+        document.getElementById("findButtonNonDetailed").addEventListener("click", async () => {
+            const userId = document.getElementById("userId").value;
+            const userDetailsElement = document.getElementById("userNonDetailed");
+            
+            try {
+                const response = await fetch(`http://localhost:8080/api/v1/user/${userId}`);
+                const user = await response.json();
+                
+                if (user != null) {
+                    userDetailsElement.innerHTML = `
+                    <div style="text-align: center;">
+                        <p style="font-family: Helvetica; font-weight: 500; font-size: 16px; display: inline-block; margin-right: 5px;">ID: ${user.id}</p>
+                        <p style="font-family: Helvetica; font-weight: 500; font-size: 16px; display: inline-block; margin-right: 5px;">Name: ${user.name}</p>
+                        <p style="font-family: Helvetica; font-weight: 500; font-size: 16px; display: inline-block; margin-right: 5px;">Surname: ${user.surname}</p>
+                    </div>
+                    `;
+                } else {
+                    userDetailsElement.innerHTML = '<p style="font-family: Helvetica; font-size: 20px; font-weight: 500;">User was not found in database.</p>';
+                }
+            } catch (error) {
+                userDetailsElement.innerHTML = '<p style="font-family: Helvetica; font-size: 20px; font-weight: 500;">User was not found in database.</p>';
+            }
+        });
+        
+        // GET UsersDetailedInfo
+        document.getElementById("findButtonDetailed").addEventListener("click", async () => {
+            const userId = document.getElementById("userId").value;
+            const userDetailsElement = document.getElementById("userDetailed");
+            
+            try {
+                const response = await fetch(`http://localhost:8080/api/v1/user/${userId}?detail=true`);
+                const user = await response.json();
+                
+                if (user != null) {
+                    userDetailsElement.innerHTML = `
+                    <div style="text-align: center;">
+                        <p style="font-family: Helvetica; font-weight: 300; font-size: 16px; line-height: 0px; display: inline-block; margin-right: 5px;">ID: ${user.id}</p>
+                        <p style="font-family: Helvetica; font-weight: 300; font-size: 16px; line-height: 0px; display: inline-block; margin-right: 5px;">Name: ${user.name}</p>
+                        <p style="font-family: Helvetica; font-weight: 300; font-size: 16px; line-height: 0px; display: inline-block; margin-right: 5px;">Surname: ${user.surname}</p>
+                        <p style="font-family: Helvetica; font-weight: 300; font-size: 16px; line-height: 0px; display: inline-block; margin-right: 5px;">Person ID: ${user.personID}<p>
+                        <p style="font-family: Helvetica; font-weight: 300; font-size: 16px; line-height: 0px; display: inline-block; margin-right: 5px;">UUID: ${user.uuid}<p>
+                    </div>
+                    `;
+                } else {
+                    userDetailsElement.innerHTML = '<p style="font-family: Helvetica; font-size: 20px; font-weight: 500;">User was not found in database.</p>';
+                }
+            } catch (error) {
+                userDetailsElement.innerHTML = '<p style="font-family: Helvetica; font-size: 20px; font-weight: 500;">User was not found in database.</p>';
+            }
+        });
+        
+        // UPDATE User
+        document.getElementById("updateUser").addEventListener("click", async () => {
+            const userIdToUpdate = document.getElementById("userIdToUpdate").value;
+            const updatedName = document.getElementById("newName").value;
+            const updatedSurname = document.getElementById("newSurname").value;
+
+        const updatedUserData = {
+            name: updatedName,
+            surname: updatedSurname
+        };
+
+        try {
+            const response = await fetch(`http://localhost:8080/api/v1/user/${userIdToUpdate}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(updatedUserData)
+            });
+
+            const apiResponse = await response.json(); 
+
+            if (response.ok) {
+                alert(apiResponse.message);
+            } else {
+                alert(apiResponse.message);
+            }
+        } catch (error) {
+            alert("An error occurred: " + error.message);
+        }
+        });
+
+        // DELETE User
+        document.getElementById("deleteUser").addEventListener("click", async () => {
+            const userIdToDelete = document.getElementById("ID").value;
+
+        try {
+            const response = await fetch(`http://localhost:8080/api/v1/user/${userIdToDelete}`, {
+                method: "DELETE"
+            });
+
+            const apiResponse = await response.json();
+
+            if (response.ok) {
+                alert(apiResponse.message);
+            } else {
+                alert(apiResponse.message);
+            }
+        } catch (error) {
+            alert("An error occurred: " + error.message);
+        }
+        });
+        
+        // Funkce pro získání seznamů
+        function openAllUsersInfo() {
+            window.open("http://localhost:8080/api/v1/users", "_blank");
+        }
+        function openAllUsersDetailedInfo() {
+            window.open("http://localhost:8080/api/v1/users?detail=true", "_blank");
+        }
+
+        // Animace
+        let circ = new CircleType(document.getElementById('circ'));
+        circ.raduis(360);
+
+    </script>
+
+</body>
+
+</html>
