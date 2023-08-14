@@ -82,7 +82,7 @@ input[type="text"]:focus::placeholder {
   text-align: center;
 }
 
-/* Animace */
+/* Animation header */
 
 .marquee {
   position: relative;
@@ -106,7 +106,7 @@ input[type="text"]:focus::placeholder {
   to { transform: translateX(-50%); }
 }
 
-/* Animace */
+/* Animation circle */
 
 #circ{
   font-size: 11px;
