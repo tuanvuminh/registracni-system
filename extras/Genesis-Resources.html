@@ -208,7 +208,7 @@
         }
         });
         
-        // Funkce pro získání seznamů
+        // GET list of users
         function openAllUsersInfo() {
             window.open("http://localhost:8080/api/v1/users", "_blank");
         }
@@ -216,7 +216,7 @@
             window.open("http://localhost:8080/api/v1/users?detail=true", "_blank");
         }
 
-        // Animace
+        // Animation
         let circ = new CircleType(document.getElementById('circ'));
         circ.raduis(360);
 
