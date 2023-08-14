@@ -109,9 +109,9 @@ input[type="text"]:focus::placeholder {
 /* Animace */
 
 #circ{
-  font-size: 10px;
+  font-size: 11px;
   font-family: Helvetica;
-  font-weight: lighter;
+  font-weight: bold;
   animation: spin 50s linear infinite;
   color: black;
 }
