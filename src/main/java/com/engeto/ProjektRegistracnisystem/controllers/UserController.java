@@ -16,7 +16,7 @@ public class UserController {
     public static final ApiResponse CREATED = new ApiResponse(true,
             "User was added successfully.");
     public static final ApiResponse NOT_CREATED = new ApiResponse(false,
-            "User could not be added.");
+            "User could not be added, because this person ID is already in database.");
     public static final ApiResponse UPDATED = new ApiResponse(true,
             "User was updated successfully.");
     public static final ApiResponse NOT_UPDATED = new ApiResponse(false,
@@ -25,6 +25,8 @@ public class UserController {
             "User was deleted successfully.");
     public static final ApiResponse NOT_DELETED = new ApiResponse(false,
             NOT_FOUND);
+    public static final ApiResponse INVALID_ID = new ApiResponse(false,
+            "User could not be added, because this person ID is invalid.");
 
     // Založení nového uživatele POST api/v1/user
     @PostMapping("/user")

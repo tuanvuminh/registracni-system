@@ -24,7 +24,7 @@ public class UserService implements UserRepository, RowMapper<User> {
     // Založení nového uživatele
     @Override
     public int createUser(User user) {
-        return jdbcTemplate.update("INSERT INTO Persons (name, surname, personID, uuid) VALUES(?,?,?,UUID_TO_BIN(UUID()))",
+        return jdbcTemplate.update("INSERT INTO Persons (name, surname, personID, uuid) VALUES(?,?,?,UUID())",
                 user.getName(), user.getSurname(), user.getPersonID());
     }
 
