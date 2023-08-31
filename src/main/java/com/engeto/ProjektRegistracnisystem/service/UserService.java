@@ -8,9 +8,11 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+
 @Service
 public class UserService implements UserRepository, RowMapper<User> {
     @Autowired
@@ -23,63 +25,37 @@ public class UserService implements UserRepository, RowMapper<User> {
 
     // Založení nového uživatele
     @Override
-    public int createUser(User user) {
+    public Integer createUser(User user) {
         return jdbcTemplate.update("INSERT INTO Persons (name, surname, personID, uuid) VALUES(?,?,?,UUID())",
                 user.getName(), user.getSurname(), user.getPersonID());
     }
 
     // Informace o uživateli
     @Override
-    public Object getUserDetails(Long ID, boolean detail) {
-        String sql;
-        if (detail) {
-            sql = "SELECT ID, name, surname, personID, uuid FROM Persons WHERE ID = ?";
-        } else {
-            sql = "SELECT ID, name, surname FROM Persons WHERE ID = ?";
-        }
-
+    public UserNonDetailed getUsersNonDetailedInfo(Long id) {
+        String sql = "SELECT id, name, surname FROM Persons WHERE id = ?";
         try {
-            return jdbcTemplate.queryForObject(sql, new Object[]{ID}, (resultSet, rowNum) -> {
-                if (detail) {
-                    User user = new User();
-                    user.setID(resultSet.getLong("ID"));
-                    user.setName(resultSet.getString("name"));
-                    user.setSurname(resultSet.getString("surname"));
-                    try {
-                        user.setPersonID(resultSet.getString("personID"));
-                    } catch (UserException e) {
-                        System.err.println(e.getLocalizedMessage());
-                    }
-                    user.setUuid(resultSet.getString("uuid").getBytes());
-                    return user;
-                } else {
-                    UserNonDetailed user = new UserNonDetailed(
-                            resultSet.getLong("ID"),
-                            resultSet.getString("name"),
-                            resultSet.getString("surname")
-                    );
-                    return user;
-                }
+            return jdbcTemplate.queryForObject(sql, new Object[]{id}, (resultSet, rowNum) -> {
+                UserNonDetailed user = new UserNonDetailed(
+                        resultSet.getLong("id"),
+                        resultSet.getString("name"),
+                        resultSet.getString("surname")
+                );
+                return user;
             });
         } catch (EmptyResultDataAccessException e) {
             return null;
         }
     }
 
-    // Informace o všech uživatelích
     @Override
-    public List<Object> getUsersList(boolean detail) {
-        String sql;
-        if (detail) {
-            sql = "SELECT ID, name, surname, personID, uuid FROM Persons";
-        } else {
-            sql = "SELECT ID, name, surname FROM Persons";
-        }
+    public User getUserDetailedInfo(Long id) {
+        String sql = "SELECT id, name, surname, personID, uuid FROM Persons WHERE id = ?";
 
-        return jdbcTemplate.query(sql, (resultSet, rowNum) -> {
-            if (detail) {
+        try {
+            return jdbcTemplate.queryForObject(sql, new Object[]{id}, (resultSet, rowNum) -> {
                 User user = new User();
-                user.setID(resultSet.getLong("ID"));
+                user.setId(resultSet.getLong("id"));
                 user.setName(resultSet.getString("name"));
                 user.setSurname(resultSet.getString("surname"));
                 try {
@@ -89,32 +65,60 @@ public class UserService implements UserRepository, RowMapper<User> {
                 }
                 user.setUuid(resultSet.getString("uuid").getBytes());
                 return user;
-            } else {
-                UserNonDetailed user = new UserNonDetailed(
-                        resultSet.getLong("ID"),
-                        resultSet.getString("name"),
-                        resultSet.getString("surname")
-                );
-                return user;
+            });
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
+    // Informace o všech uživatelích
+    @Override
+    public List<User> getUsersDetailedInfoList() {
+        String sql = "SELECT id, name, surname, personID, uuid FROM Persons";
+        return jdbcTemplate.query(sql, (resultSet, rowNum) -> {
+            User user = new User();
+            user.setId(resultSet.getLong("id"));
+            user.setName(resultSet.getString("name"));
+            user.setSurname(resultSet.getString("surname"));
+            try {
+                user.setPersonID(resultSet.getString("personID"));
+            } catch (UserException e) {
+                System.err.println(e.getLocalizedMessage());
             }
+            user.setUuid(resultSet.getString("uuid").getBytes());
+            return user;
         });
+    }
+
+    @Override
+    public List<UserNonDetailed> getUsersNonDetailedInfoList() {
+        String sql = "SELECT id, name, surname FROM Persons";
+        return jdbcTemplate.query(sql, (resultSet, rowNum) -> {
+                    UserNonDetailed user = new UserNonDetailed(
+                            resultSet.getLong("id"),
+                            resultSet.getString("name"),
+                            resultSet.getString("surname")
+                    );
+                    return user;
+                }
+        );
     }
 
     // Upravení informací o uživateli
     @Override
-    public int updateUser(Object updatedUser) {
-        if (updatedUser instanceof User user) {
-            return jdbcTemplate.update("UPDATE Persons SET name = ?, surname = ? WHERE ID = ?",
-                    user.getName(), user.getSurname(), user.getID());
+    public Integer updateUser(User userToUpdate) {
+        if (userToUpdate != null) {
+            return jdbcTemplate.update("UPDATE Persons SET name = ?, surname = ? WHERE id = ?",
+                    userToUpdate.getName(), userToUpdate.getSurname(), userToUpdate.getId());
         } else {
-            return Integer.parseInt(null);
+            return null;
         }
     }
 
     // Smazání uživatele
     @Override
-    public int deleteUserByID(Long ID) {
-        return jdbcTemplate.update("DELETE FROM Persons WHERE ID=?", ID);
+    public Integer deleteUserByID(Long id) {
+        return jdbcTemplate.update("DELETE FROM Persons WHERE id=?", id);
     }
 }
 

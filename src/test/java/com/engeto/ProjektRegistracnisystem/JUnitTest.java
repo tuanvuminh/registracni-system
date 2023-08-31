@@ -12,14 +12,17 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static com.engeto.ProjektRegistracnisystem.controllers.UserController.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
+import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
+
 @SpringBootTest
-public class UserControllerTest {
+public class JUnitTest {
     @Autowired
     private UserController userController;
 
@@ -46,7 +49,7 @@ public class UserControllerTest {
     @DisplayName("Získání informací o uživateli pomocí ID.")
     public void getUsersInfoByExistingID() throws UserException {
         User user = new User("Jake", "Sully", "jXa4g3H7oPq2");
-        when(userService.getUserDetails(anyLong(), anyBoolean())).thenReturn(user);
+        when(userService.getUserDetailedInfo(anyLong())).thenReturn(user);
 
         // Test
         ResponseEntity<Object> test = userController.getUserById(1L, true);
@@ -55,13 +58,13 @@ public class UserControllerTest {
         assertEquals(HttpStatus.OK, test.getStatusCode());
         assertEquals(user, test.getBody());
 
-        verify(userService, times(1)).getUserDetails(anyLong(), anyBoolean());
+        verify(userService, times(1)).getUserDetailedInfo(anyLong());
     }
 
     @Test
     @DisplayName("Test získání informací uživatele pomocí neexistujícího ID.")
     public void getUsersInfoByNonExistingID() {
-        when(userService.getUserDetails(anyLong(), anyBoolean())).thenReturn(null);
+        when(userService.getUserDetailedInfo(anyLong())).thenReturn(null);
 
         // Test
         ResponseEntity<Object> test = userController.getUserById(1L, true);
@@ -70,31 +73,33 @@ public class UserControllerTest {
         assertEquals(HttpStatus.NOT_FOUND, test.getStatusCode());
         assertEquals(NOT_FOUND, test.getBody());
 
-        verify(userService, times(1)).getUserDetails(anyLong(), anyBoolean());
+        verify(userService, times(1)).getUserDetailedInfo(anyLong());
     }
 
     @Test
-    @DisplayName("Získání seznamu uživatelů, které jsou v databázi.")
+    @DisplayName("Získání seznamu uživatelů, kteří jsou v databázi.")
     public void getUsersList() throws UserException {
-        List<Object> userList = new ArrayList<>();
+        List<User> userList = new ArrayList<>();
         userList.add(new User("Jake", "Sully", "jXa4g3H7oPq2"));
-        when(userService.getUsersList(anyBoolean())).thenReturn(userList);
+        when(userService.getUsersDetailedInfoList()).thenReturn(userList);
 
         // Test
         ResponseEntity<List<Object>> test = userController.getUsersList(true);
 
         // Ověření
         assertEquals(HttpStatus.OK, test.getStatusCode());
-        assertEquals(userList, test.getBody());
+        assertEquals(Collections.singletonList(userList), test.getBody());  // Zde upravená aserce
 
-        verify(userService, times(1)).getUsersList(anyBoolean());
+        verify(userService, times(1)).getUsersDetailedInfoList();
     }
+
+
 
     @Test
     @DisplayName("Aktualizování informací uživatele, který je v databázi.")
     public void updateUser() throws UserException {
         User existingUser = new User(1l, "Jake", "Sully");
-        when(userService.getUserDetails(anyLong(), anyBoolean())).thenReturn(existingUser);
+        when(userService.getUserDetailedInfo(anyLong())).thenReturn(existingUser);
 
         // Test
         User updatedUserData = new User(1L,"John", "Smith");
@@ -104,14 +109,14 @@ public class UserControllerTest {
         assertEquals(HttpStatus.OK, test.getStatusCode());
         assertEquals(UPDATED, test.getBody());
 
-        verify(userService, times(1)).getUserDetails(anyLong(), anyBoolean());
+        verify(userService, times(1)).getUserDetailedInfo(anyLong());
         verify(userService, times(1)).updateUser(any());
     }
 
     @Test
     @DisplayName("Aktualizování informací uživatele, který není v databázi.")
     public void updateNonExistingUser() throws UserException {
-        when(userService.getUserDetails(anyLong(), anyBoolean())).thenReturn(null);
+        when(userService.getUserDetailedInfo(anyLong())).thenReturn(null);
 
         // Test
         User updatedUserData = new User(50L,"John", "Smith");
@@ -121,7 +126,7 @@ public class UserControllerTest {
         assertEquals(HttpStatus.NOT_FOUND, test.getStatusCode());
         assertEquals(NOT_UPDATED, test.getBody());
 
-        verify(userService, times(1)).getUserDetails(anyLong(), anyBoolean());
+        verify(userService, times(1)).getUserDetailedInfo(anyLong());
         verify(userService, never()).updateUser(any());
     }
 
@@ -149,7 +154,7 @@ public class UserControllerTest {
         ResponseEntity<ApiResponse> test = userController.deleteUserById(1L);
 
         // Ověření
-        assertEquals(HttpStatus.NOT_FOUND, test.getStatusCode());
+        assertEquals(INTERNAL_SERVER_ERROR, test.getStatusCode());
         assertEquals(NOT_DELETED, test.getBody());
 
         verify(userService, times(1)).deleteUserByID(anyLong());

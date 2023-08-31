@@ -1,7 +1,7 @@
 {
-	"id": "0574005e-2ec0-4de4-b548-7ea513c2feaf",
+	"id": "26c7e496-a3da-4009-a51b-48a07cfd2c94",
 	"name": "RegistracniSystem",
-	"timestamp": "2023-08-10T10:30:19.915Z",
+	"timestamp": "2023-08-31T21:15:28.773Z",
 	"collection_id": "28237017-2496edbd-c0a2-4331-b68f-99cae7744dd7",
 	"folder_id": 0,
 	"environment_id": "28237017-b2258b5f-5445-4eef-a6d4-e99b5b39754c",
@@ -9,14 +9,14 @@
 	"delay": 0,
 	"persist": true,
 	"status": "finished",
-	"startedAt": "2023-08-10T10:30:18.604Z",
+	"startedAt": "2023-08-31T21:15:27.952Z",
 	"totalFail": 0,
 	"results": [
 		{
 			"id": "8e50d69b-a87f-47fe-beba-f475093708b0",
 			"name": "POST api/v1/user",
 			"url": "localhost:8080/api/v1/user",
-			"time": 16,
+			"time": 18,
 			"responseCode": {
 				"code": 201,
 				"name": "Created"
@@ -31,7 +31,7 @@
 				}
 			},
 			"times": [
-				16
+				18
 			],
 			"allTests": [
 				{
@@ -43,7 +43,7 @@
 			"id": "f13b1b4a-42dd-4fca-874e-0fee069a1c2a",
 			"name": "POST api/v1/user Create another user",
 			"url": "localhost:8080/api/v1/user",
-			"time": 8,
+			"time": 27,
 			"responseCode": {
 				"code": 201,
 				"name": "Created"
@@ -58,7 +58,7 @@
 				}
 			},
 			"times": [
-				8
+				27
 			],
 			"allTests": [
 				{
@@ -70,7 +70,7 @@
 			"id": "88d8abcc-215e-463a-aada-514313cbb566",
 			"name": "500 POST api/v1/user",
 			"url": "localhost:8080/api/v1/user",
-			"time": 7,
+			"time": 6,
 			"responseCode": {
 				"code": 500,
 				"name": "Internal Server Error"
@@ -85,7 +85,7 @@
 				}
 			},
 			"times": [
-				7
+				6
 			],
 			"allTests": [
 				{
@@ -97,7 +97,7 @@
 			"id": "ecb042d1-4aaf-43db-b336-7ead7eea04d4",
 			"name": "GET api/v1/users",
 			"url": "localhost:8080/api/v1/users",
-			"time": 19,
+			"time": 13,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -112,7 +112,7 @@
 				}
 			},
 			"times": [
-				19
+				13
 			],
 			"allTests": [
 				{
@@ -124,6 +124,114 @@
 			"id": "f4d9a18f-8bb5-471e-9fdd-5042464be56f",
 			"name": "GET api/v1/users?detail=true",
 			"url": "localhost:8080/api/v1/users?detail=true",
+			"time": 8,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code 200": true
+			},
+			"testPassFailCounts": {
+				"Status code 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				8
+			],
+			"allTests": [
+				{
+					"Status code 200": true
+				}
+			]
+		},
+		{
+			"id": "f9d06210-2a40-46dc-b477-aad4cb36e6d6",
+			"name": "GET api/v1/users/{ID}",
+			"url": "localhost:8080/api/v1/users/1",
+			"time": 6,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code 200": true
+			},
+			"testPassFailCounts": {
+				"Status code 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				6
+			],
+			"allTests": [
+				{
+					"Status code 200": true
+				}
+			]
+		},
+		{
+			"id": "8fc14fea-f698-4dfd-98d8-40991af93aa6",
+			"name": "GET api/v1/users/{ID}?detail=true",
+			"url": "localhost:8080/api/v1/users/1?detail=true",
+			"time": 13,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code 200": true
+			},
+			"testPassFailCounts": {
+				"Status code 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				13
+			],
+			"allTests": [
+				{
+					"Status code 200": true
+				}
+			]
+		},
+		{
+			"id": "6fca4939-4936-497f-a63c-3d5e87939a8b",
+			"name": "DELETE api/v1/users/{ID}",
+			"url": "localhost:8080/api/v1/users/2",
+			"time": 8,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code 200": true
+			},
+			"testPassFailCounts": {
+				"Status code 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				8
+			],
+			"allTests": [
+				{
+					"Status code 200": true
+				}
+			]
+		},
+		{
+			"id": "71849c08-553b-4ff3-9e5b-9f360adf8442",
+			"name": "PUT api/v1/users/{ID}",
+			"url": "localhost:8080/api/v1/users/1",
 			"time": 11,
 			"responseCode": {
 				"code": 200,
@@ -148,117 +256,9 @@
 			]
 		},
 		{
-			"id": "f9d06210-2a40-46dc-b477-aad4cb36e6d6",
-			"name": "GET api/v1/user/{ID}",
-			"url": "localhost:8080/api/v1/user/1",
-			"time": 8,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"Status code 200": true
-			},
-			"testPassFailCounts": {
-				"Status code 200": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				8
-			],
-			"allTests": [
-				{
-					"Status code 200": true
-				}
-			]
-		},
-		{
-			"id": "8fc14fea-f698-4dfd-98d8-40991af93aa6",
-			"name": "GET api/v1/user/{ID}?detail=true",
-			"url": "localhost:8080/api/v1/user/1?detail=true",
-			"time": 6,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"Status code 200": true
-			},
-			"testPassFailCounts": {
-				"Status code 200": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				6
-			],
-			"allTests": [
-				{
-					"Status code 200": true
-				}
-			]
-		},
-		{
-			"id": "6fca4939-4936-497f-a63c-3d5e87939a8b",
-			"name": "DELETE api/v1/user/{ID}",
-			"url": "localhost:8080/api/v1/user/2",
-			"time": 6,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"Status code 200": true
-			},
-			"testPassFailCounts": {
-				"Status code 200": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				6
-			],
-			"allTests": [
-				{
-					"Status code 200": true
-				}
-			]
-		},
-		{
-			"id": "71849c08-553b-4ff3-9e5b-9f360adf8442",
-			"name": "PUT api/v1/user/{ID}",
-			"url": "localhost:8080/api/v1/user/1",
-			"time": 9,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"Status code 200": true
-			},
-			"testPassFailCounts": {
-				"Status code 200": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				9
-			],
-			"allTests": [
-				{
-					"Status code 200": true
-				}
-			]
-		},
-		{
 			"id": "87d4610f-ffb1-4a85-849c-dadbbb598575",
-			"name": "404 PUT api/v1/user/{ID}",
-			"url": "localhost:8080/api/v1/user/5",
+			"name": "404 PUT api/v1/users/{ID}",
+			"url": "localhost:8080/api/v1/users/5",
 			"time": 7,
 			"responseCode": {
 				"code": 404,
@@ -284,9 +284,9 @@
 		},
 		{
 			"id": "16d123ef-7b4c-4451-89f7-2b8a506b1ae5",
-			"name": "404 GET api/v1/user/{ID}",
-			"url": "localhost:8080/api/v1/user/5",
-			"time": 5,
+			"name": "404 GET api/v1/users/{ID}",
+			"url": "localhost:8080/api/v1/users/5",
+			"time": 6,
 			"responseCode": {
 				"code": 404,
 				"name": "Not Found"
@@ -301,7 +301,7 @@
 				}
 			},
 			"times": [
-				5
+				6
 			],
 			"allTests": [
 				{
@@ -311,9 +311,9 @@
 		},
 		{
 			"id": "29af9da8-7245-4d1a-96f3-752e38603156",
-			"name": "404 GET api/v1/user/{ID}?detail=true",
-			"url": "localhost:8080/api/v1/user/5?detail=true",
-			"time": 12,
+			"name": "404 GET api/v1/users/{ID}?detail=true",
+			"url": "localhost:8080/api/v1/users/5?detail=true",
+			"time": 6,
 			"responseCode": {
 				"code": 404,
 				"name": "Not Found"
@@ -328,7 +328,7 @@
 				}
 			},
 			"times": [
-				12
+				6
 			],
 			"allTests": [
 				{
@@ -338,34 +338,34 @@
 		},
 		{
 			"id": "e610fab1-36d4-4255-8862-91eeafa385bb",
-			"name": "404 DELETE api/v1/user/{ID}",
-			"url": "localhost:8080/api/v1/user/5",
-			"time": 14,
+			"name": "404 DELETE api/v1/users/{ID}",
+			"url": "localhost:8080/api/v1/users/5",
+			"time": 5,
 			"responseCode": {
-				"code": 404,
-				"name": "Not Found"
+				"code": 500,
+				"name": "Internal Server Error"
 			},
 			"tests": {
-				"Status code 404": true
+				"Status code 500": true
 			},
 			"testPassFailCounts": {
-				"Status code 404": {
+				"Status code 500": {
 					"pass": 1,
 					"fail": 0
 				}
 			},
 			"times": [
-				14
+				5
 			],
 			"allTests": [
 				{
-					"Status code 404": true
+					"Status code 500": true
 				}
 			]
 		}
 	],
 	"count": 1,
-	"totalTime": 128,
+	"totalTime": 134,
 	"collection": {
 		"requests": [
 			{

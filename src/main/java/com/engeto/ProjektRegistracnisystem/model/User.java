@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 public class User {
-    private Long ID;
+    private Long id;
     private String name;
     private String surname;
     private String personID;
@@ -20,8 +20,8 @@ public class User {
         this.setPersonID(personID);
     }
 
-    public User(Long ID, String name, String surname) {
-        this.ID = ID;
+    public User(Long id, String name, String surname) {
+        this.id = id;
         this.name = name;
         this.surname = surname;
     }
@@ -53,12 +53,12 @@ public class User {
     }
 
     // Gettery a settery
-    public Long getID() {
-        return ID;
+    public Long getId() {
+        return id;
     }
 
-    public void setID(Long ID) {
-        this.ID = ID;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getPersonID() {

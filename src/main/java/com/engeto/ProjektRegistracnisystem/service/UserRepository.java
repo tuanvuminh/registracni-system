@@ -1,18 +1,24 @@
 package com.engeto.ProjektRegistracnisystem.service;
 
 import com.engeto.ProjektRegistracnisystem.model.User;
+import com.engeto.ProjektRegistracnisystem.model.UserNonDetailed;
+
 import java.util.List;
 public interface UserRepository {
 
-    int createUser(User user);
+    Integer createUser(User user);
 
-    Object getUserDetails(Long ID, boolean detail);
+    UserNonDetailed getUsersNonDetailedInfo(Long id);
 
-    List<Object> getUsersList(boolean detail);
+    User getUserDetailedInfo(Long id);
 
-    int updateUser(Object updatedUser);
+    List<UserNonDetailed> getUsersNonDetailedInfoList();
 
-    int deleteUserByID(Long ID);
+    List<User> getUsersDetailedInfoList();
+
+    Integer updateUser(User userToUpdate);
+
+    Integer deleteUserByID(Long id);
 }
 
 

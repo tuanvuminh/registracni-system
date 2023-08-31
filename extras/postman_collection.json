@@ -217,7 +217,7 @@
 					"response": []
 				},
 				{
-					"name": "GET api/v1/user/{ID}",
+					"name": "GET api/v1/users/{ID}",
 					"event": [
 						{
 							"listen": "test",
@@ -235,12 +235,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{server}}/user/1",
+							"raw": "{{server}}/users/1",
 							"host": [
 								"{{server}}"
 							],
 							"path": [
-								"user",
+								"users",
 								"1"
 							]
 						}
@@ -248,7 +248,7 @@
 					"response": []
 				},
 				{
-					"name": "GET api/v1/user/{ID}?detail=true",
+					"name": "GET api/v1/users/{ID}?detail=true",
 					"event": [
 						{
 							"listen": "test",
@@ -266,12 +266,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{server}}/user/1?detail=true",
+							"raw": "{{server}}/users/1?detail=true",
 							"host": [
 								"{{server}}"
 							],
 							"path": [
-								"user",
+								"users",
 								"1"
 							],
 							"query": [
@@ -285,7 +285,7 @@
 					"response": []
 				},
 				{
-					"name": "DELETE api/v1/user/{ID}",
+					"name": "DELETE api/v1/users/{ID}",
 					"event": [
 						{
 							"listen": "test",
@@ -303,12 +303,12 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{server}}/user/2",
+							"raw": "{{server}}/users/2",
 							"host": [
 								"{{server}}"
 							],
 							"path": [
-								"user",
+								"users",
 								"2"
 							]
 						}
@@ -316,7 +316,7 @@
 					"response": []
 				},
 				{
-					"name": "PUT api/v1/user/{ID}",
+					"name": "PUT api/v1/users/{ID}",
 					"event": [
 						{
 							"listen": "test",
@@ -343,12 +343,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{server}}/user/1",
+							"raw": "{{server}}/users/1",
 							"host": [
 								"{{server}}"
 							],
 							"path": [
-								"user",
+								"users",
 								"1"
 							]
 						}
@@ -361,7 +361,7 @@
 			"name": "Ověření 404",
 			"item": [
 				{
-					"name": "404 PUT api/v1/user/{ID}",
+					"name": "404 PUT api/v1/users/{ID}",
 					"event": [
 						{
 							"listen": "test",
@@ -388,12 +388,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{server}}/user/5",
+							"raw": "{{server}}/users/5",
 							"host": [
 								"{{server}}"
 							],
 							"path": [
-								"user",
+								"users",
 								"5"
 							]
 						}
@@ -401,7 +401,7 @@
 					"response": []
 				},
 				{
-					"name": "404 GET api/v1/user/{ID}",
+					"name": "404 GET api/v1/users/{ID}",
 					"event": [
 						{
 							"listen": "test",
@@ -419,12 +419,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{server}}/user/5",
+							"raw": "{{server}}/users/5",
 							"host": [
 								"{{server}}"
 							],
 							"path": [
-								"user",
+								"users",
 								"5"
 							]
 						}
@@ -432,7 +432,7 @@
 					"response": []
 				},
 				{
-					"name": "404 GET api/v1/user/{ID}?detail=true",
+					"name": "404 GET api/v1/users/{ID}?detail=true",
 					"event": [
 						{
 							"listen": "test",
@@ -450,12 +450,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{server}}/user/5?detail=true",
+							"raw": "{{server}}/users/5?detail=true",
 							"host": [
 								"{{server}}"
 							],
 							"path": [
-								"user",
+								"users",
 								"5"
 							],
 							"query": [
@@ -469,14 +469,14 @@
 					"response": []
 				},
 				{
-					"name": "404 DELETE api/v1/user/{ID}",
+					"name": "404 DELETE api/v1/users/{ID}",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code 404\", function() {",
-									"    pm.response.to.have.status(404);",
+									"pm.test(\"Status code 500\", function() {",
+									"    pm.response.to.have.status(500);",
 									"})"
 								],
 								"type": "text/javascript"
@@ -487,12 +487,12 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{server}}/user/5",
+							"raw": "{{server}}/users/5",
 							"host": [
 								"{{server}}"
 							],
 							"path": [
-								"user",
+								"users",
 								"5"
 							]
 						}

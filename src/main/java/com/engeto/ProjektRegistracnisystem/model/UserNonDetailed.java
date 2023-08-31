@@ -1,22 +1,22 @@
 package com.engeto.ProjektRegistracnisystem.model;
 
 public class UserNonDetailed {
-    private Long ID;
+    private Long id;
     private String name;
     private String surname;
 
-    public UserNonDetailed(Long ID, String name, String surname) {
-        this.ID = ID;
+    public UserNonDetailed(Long id, String name, String surname) {
+        this.id = id;
         this.name = name;
         this.surname = surname;
     }
 
-    public Long getID() {
-        return ID;
+    public Long getId() {
+        return id;
     }
 
-    public void setID(Long ID) {
-        this.ID = ID;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
