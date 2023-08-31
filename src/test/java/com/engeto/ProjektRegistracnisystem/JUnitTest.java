@@ -93,8 +93,6 @@ public class JUnitTest {
         verify(userService, times(1)).getUsersDetailedInfoList();
     }
 
-
-
     @Test
     @DisplayName("Aktualizování informací uživatele, který je v databázi.")
     public void updateUser() throws UserException {
