@@ -42,7 +42,7 @@ Pro každý nový záznam musí být vygenerovaný ještě UUID, což bude dalš
 
 {id: string, name: string, surname: string, personID: string , uuid: string  }
 
-# informace o všech uživatelích
+# Informace o všech uživatelích
 
 - [ ] Dostat informace o jednom uživateli je možné přes api: GET api/v1/users
 
@@ -58,7 +58,7 @@ List <{id: string, name: string, surname: string }>
 
 {id: string, name: string, surname: string, personID: string , uuid: string  }
 
-# upravit informace o uživateli
+# Upravit informace o uživateli
 - [ ] Ještě existuje varianta PUT api/v1/user
 
 
@@ -73,7 +73,7 @@ List <{id: string, name: string, surname: string }>
 
 {id: string, name: string, surname: string, personID: string , uuid: string  }
 
-# smazat uživatele
+# Smazat uživatele
 - [ ] Ještě existuje varianta DELETE api/v1/user/{ID}
 
 # POŽADAVKY NA DATABÁZI
