@@ -1,6 +1,7 @@
 package com.engeto.ProjektRegistracnisystem.settings;
 
 public class ApiResponse {
+
     private boolean success;
     private String message;
 

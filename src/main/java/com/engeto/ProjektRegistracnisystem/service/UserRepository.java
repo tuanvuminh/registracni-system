@@ -2,10 +2,8 @@ package com.engeto.ProjektRegistracnisystem.service;
 
 import com.engeto.ProjektRegistracnisystem.model.User;
 import com.engeto.ProjektRegistracnisystem.model.UserNonDetailed;
-
 import java.util.List;
 public interface UserRepository {
-
     Integer createUser(User user);
 
     UserNonDetailed getUsersNonDetailedInfo(Long id);

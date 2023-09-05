@@ -1,6 +1,6 @@
 package com.engeto.ProjektRegistracnisystem;
-import com.engeto.ProjektRegistracnisystem.controllers.UserController;
-import com.engeto.ProjektRegistracnisystem.exceptions.UserException;
+import com.engeto.ProjektRegistracnisystem.controller.UserController;
+import com.engeto.ProjektRegistracnisystem.exception.UserException;
 import com.engeto.ProjektRegistracnisystem.model.User;
 import com.engeto.ProjektRegistracnisystem.service.UserService;
 import com.engeto.ProjektRegistracnisystem.settings.ApiResponse;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static com.engeto.ProjektRegistracnisystem.controllers.UserController.*;
+import static com.engeto.ProjektRegistracnisystem.controller.UserController.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;

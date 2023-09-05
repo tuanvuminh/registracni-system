@@ -1,4 +1,5 @@
-package com.engeto.ProjektRegistracnisystem.controllers;
+package com.engeto.ProjektRegistracnisystem.controller;
+
 import com.engeto.ProjektRegistracnisystem.model.User;
 import com.engeto.ProjektRegistracnisystem.model.UserNonDetailed;
 import com.engeto.ProjektRegistracnisystem.service.UserService;
@@ -7,14 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Collections;
 import java.util.List;
 @RestController
 @RequestMapping("/api/v1")
 public class UserController {
+
     @Autowired
     private UserService userService;
+
     public static final String NOT_FOUND = "User was not found in database.";
     public static final ApiResponse CREATED = new ApiResponse(true,
             "User was added successfully.");

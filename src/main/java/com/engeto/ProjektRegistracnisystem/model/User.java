@@ -1,16 +1,17 @@
 package com.engeto.ProjektRegistracnisystem.model;
-import com.engeto.ProjektRegistracnisystem.exceptions.UserException;
+
+import com.engeto.ProjektRegistracnisystem.exception.UserException;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 public class User {
+
     private Long id;
     private String name;
     private String surname;
     private String personID;
     private byte[] uuid;
 
-    // Konstruktory
     public User() {
     }
 
@@ -26,7 +27,6 @@ public class User {
         this.surname = surname;
     }
 
-    // Ověření zda je personID validní a zda obsahuje 12 znaků.
     public void setPersonID(String personID) throws UserException {
         if (!isValidPersonID(personID)) {
             throw new UserException("Person ID is not valid.");
@@ -52,7 +52,6 @@ public class User {
         return false;
     }
 
-    // Gettery a settery
     public Long getId() {
         return id;
     }
