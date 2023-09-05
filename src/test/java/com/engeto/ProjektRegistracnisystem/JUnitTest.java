@@ -1,4 +1,5 @@
 package com.engeto.ProjektRegistracnisystem;
+
 import com.engeto.ProjektRegistracnisystem.controller.UserController;
 import com.engeto.ProjektRegistracnisystem.exception.UserException;
 import com.engeto.ProjektRegistracnisystem.model.User;
@@ -23,6 +24,7 @@ import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 
 @SpringBootTest
 public class JUnitTest {
+
     @Autowired
     private UserController userController;
 

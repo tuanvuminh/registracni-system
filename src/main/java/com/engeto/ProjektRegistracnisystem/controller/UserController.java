@@ -18,6 +18,7 @@ public class UserController {
     private UserService userService;
 
     public static final String NOT_FOUND = "User was not found in database.";
+
     public static final ApiResponse CREATED = new ApiResponse(true,
             "User was added successfully.");
     public static final ApiResponse NOT_CREATED = new ApiResponse(false,
