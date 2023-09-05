@@ -1,4 +1,4 @@
-// POST Create new user
+// POST Create New User
 document.getElementById("addNewUser").addEventListener("click", async () => {
   const nameOfUser = document.getElementById("nameOfUser").value;
   const surnameOfUser = document.getElementById("surnameOfUser").value;
@@ -131,7 +131,7 @@ document.getElementById("deleteUser").addEventListener("click", async () => {
   }
 });
 
-// GET list of users
+// GET List of Users
 function openAllUsersInfo() {
   window.open("http://localhost:8080/api/v1/users", "_blank");
 }
