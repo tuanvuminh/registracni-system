@@ -3,7 +3,7 @@ package com.engeto.ProjektRegistracnisystem.controller;
 import com.engeto.ProjektRegistracnisystem.model.User;
 import com.engeto.ProjektRegistracnisystem.model.UserNonDetailed;
 import com.engeto.ProjektRegistracnisystem.service.UserService;
-import com.engeto.ProjektRegistracnisystem.settings.ApiResponse;
+import com.engeto.ProjektRegistracnisystem.model.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

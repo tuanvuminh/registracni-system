@@ -1,6 +1,6 @@
 package com.engeto.ProjektRegistracnisystem.exception;
 
-import com.engeto.ProjektRegistracnisystem.settings.ApiResponse;
+import com.engeto.ProjektRegistracnisystem.model.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

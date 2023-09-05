@@ -4,7 +4,7 @@ import com.engeto.ProjektRegistracnisystem.controller.UserController;
 import com.engeto.ProjektRegistracnisystem.exception.UserException;
 import com.engeto.ProjektRegistracnisystem.model.User;
 import com.engeto.ProjektRegistracnisystem.service.UserService;
-import com.engeto.ProjektRegistracnisystem.settings.ApiResponse;
+import com.engeto.ProjektRegistracnisystem.model.ApiResponse;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

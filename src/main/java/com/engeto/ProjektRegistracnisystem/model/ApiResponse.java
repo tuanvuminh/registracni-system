@@ -1,4 +1,4 @@
-package com.engeto.ProjektRegistracnisystem.settings;
+package com.engeto.ProjektRegistracnisystem.model;
 
 public class ApiResponse {
 
