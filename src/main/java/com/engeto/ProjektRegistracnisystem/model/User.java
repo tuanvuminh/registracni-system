@@ -40,8 +40,7 @@ public class User {
             return false;
         }
 
-        String dataDirectory = "data";
-        String filePath = dataDirectory + File.separator + "personID.txt";
+        String filePath = "data/personID.txt";
 
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
