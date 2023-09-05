@@ -2,6 +2,7 @@ package com.engeto.ProjektRegistracnisystem.model;
 
 import com.engeto.ProjektRegistracnisystem.exception.UserException;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 public class User {
@@ -39,7 +40,10 @@ public class User {
             return false;
         }
 
-        try (BufferedReader reader = new BufferedReader(new FileReader("personID.txt"))) {
+        String dataDirectory = "data";
+        String filePath = dataDirectory + File.separator + "personID.txt";
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 if (line.equals(personID)) {
