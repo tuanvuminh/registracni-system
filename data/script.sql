@@ -25,5 +25,5 @@ UPDATE Persons SET name = "Jane", surname = "Smith" WHERE id = 3;
 DELETE FROM Persons WHERE id=3;
 
 DELETE FROM Persons ;
-ALTER TABLE Persons  AUTO_INCREMENT = 1;
+ALTER TABLE Persons AUTO_INCREMENT = 1;
 
