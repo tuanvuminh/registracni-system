@@ -42,7 +42,6 @@ public class UserService implements UserRepository {
     @Override
     public User getUserDetailedInfo(Long id) {
         String sql = "SELECT id, name, surname, personID, uuid FROM Persons WHERE id = ?";
-
         try {
             return jdbcTemplate.queryForObject(sql, new Object[]{id}, (resultSet, rowNum) -> {
                 UserDetailed userDetailed = new UserDetailed();
