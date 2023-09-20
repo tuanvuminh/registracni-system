@@ -1,4 +1,4 @@
-package com.engeto.ProjektRegistracnisystem.model;
+package com.engeto.backend.model;
 
 public class ApiResponse {
 

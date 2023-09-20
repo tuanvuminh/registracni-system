@@ -1,14 +1,14 @@
-package com.engeto.ProjektRegistracnisystem.controller;
+package com.engeto.backend.controller;
 
-import com.engeto.ProjektRegistracnisystem.model.UserDetailed;
-import com.engeto.ProjektRegistracnisystem.model.User;
-import com.engeto.ProjektRegistracnisystem.service.UserService;
-import com.engeto.ProjektRegistracnisystem.model.ApiResponse;
+import com.engeto.backend.model.UserDetailed;
+import com.engeto.backend.model.User;
+import com.engeto.backend.service.UserService;
+import com.engeto.backend.model.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.util.Collections;
+
 import java.util.List;
 @RestController
 @RequestMapping("/api/v1")

@@ -1,8 +1,8 @@
-package com.engeto.ProjektRegistracnisystem.service;
+package com.engeto.backend.service;
 
-import com.engeto.ProjektRegistracnisystem.exception.UserException;
-import com.engeto.ProjektRegistracnisystem.model.UserDetailed;
-import com.engeto.ProjektRegistracnisystem.model.User;
+import com.engeto.backend.exception.UserException;
+import com.engeto.backend.model.UserDetailed;
+import com.engeto.backend.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;

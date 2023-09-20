@@ -1,11 +1,11 @@
-package com.engeto.ProjektRegistracnisystem;
+package com.engeto.backend;
 
-import com.engeto.ProjektRegistracnisystem.controller.UserController;
-import com.engeto.ProjektRegistracnisystem.exception.UserException;
-import com.engeto.ProjektRegistracnisystem.model.User;
-import com.engeto.ProjektRegistracnisystem.model.UserDetailed;
-import com.engeto.ProjektRegistracnisystem.service.UserService;
-import com.engeto.ProjektRegistracnisystem.model.ApiResponse;
+import com.engeto.backend.controller.UserController;
+import com.engeto.backend.exception.UserException;
+import com.engeto.backend.model.User;
+import com.engeto.backend.model.UserDetailed;
+import com.engeto.backend.service.UserService;
+import com.engeto.backend.model.ApiResponse;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import org.springframework.http.ResponseEntity;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.engeto.ProjektRegistracnisystem.controller.UserController.*;
+import static com.engeto.backend.controller.UserController.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;

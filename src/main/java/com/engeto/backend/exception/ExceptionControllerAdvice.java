@@ -1,11 +1,11 @@
-package com.engeto.ProjektRegistracnisystem.exception;
+package com.engeto.backend.exception;
 
-import com.engeto.ProjektRegistracnisystem.model.ApiResponse;
+import com.engeto.backend.model.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import static com.engeto.ProjektRegistracnisystem.controller.UserController.INVALID_ID;
+import static com.engeto.backend.controller.UserController.INVALID_ID;
 @ControllerAdvice
 public class ExceptionControllerAdvice {
     @ExceptionHandler(UserException.class)

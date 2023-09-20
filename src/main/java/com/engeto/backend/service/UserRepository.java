@@ -1,7 +1,7 @@
-package com.engeto.ProjektRegistracnisystem.service;
+package com.engeto.backend.service;
 
-import com.engeto.ProjektRegistracnisystem.model.User;
-import com.engeto.ProjektRegistracnisystem.model.UserDetailed;
+import com.engeto.backend.model.User;
+import com.engeto.backend.model.UserDetailed;
 
 import java.util.List;
 public interface UserRepository {

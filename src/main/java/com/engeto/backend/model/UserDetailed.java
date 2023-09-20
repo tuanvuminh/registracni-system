@@ -1,9 +1,11 @@
-package com.engeto.ProjektRegistracnisystem.model;
+package com.engeto.backend.model;
 
-import com.engeto.ProjektRegistracnisystem.exception.UserException;
+import com.engeto.backend.exception.UserException;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+
 public class UserDetailed extends User {
 
     private String personID;
@@ -35,21 +37,17 @@ public class UserDetailed extends User {
     }
 
     private boolean isValidPersonID(String personID) {
-        if (personID.length() != 12) {
-            return false;
-        }
-
-        String filePath = "data/personID.txt";
-
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                if (line.equals(personID)) {
-                    return true;
+        if (personID.length() == 12) {
+            try (BufferedReader reader = new BufferedReader(new FileReader("data/personID.txt"))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    if (line.equals(personID)) {
+                        return true;
+                    }
                 }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
         return false;
     }

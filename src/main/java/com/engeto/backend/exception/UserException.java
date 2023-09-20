@@ -1,4 +1,4 @@
-package com.engeto.ProjektRegistracnisystem.exception;
+package com.engeto.backend.exception;
 
 public class UserException extends Exception{
     public UserException(String message) {
