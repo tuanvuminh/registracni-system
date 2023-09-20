@@ -1,8 +1,8 @@
 package com.engeto.ProjektRegistracnisystem.service;
 
 import com.engeto.ProjektRegistracnisystem.exception.UserException;
+import com.engeto.ProjektRegistracnisystem.model.UserDetailed;
 import com.engeto.ProjektRegistracnisystem.model.User;
-import com.engeto.ProjektRegistracnisystem.model.UserNonDetailed;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -16,18 +16,18 @@ public class UserService implements UserRepository {
 
     // Založení nového uživatele
     @Override
-    public Integer createUser(User user) {
+    public Integer createUser(UserDetailed userDetailed) {
         return jdbcTemplate.update("INSERT INTO Persons (name, surname, personID, uuid) VALUES(?,?,?,UUID())",
-                user.getName(), user.getSurname(), user.getPersonID());
+                userDetailed.getName(), userDetailed.getSurname(), userDetailed.getPersonID());
     }
 
     // Informace o uživateli
     @Override
-    public UserNonDetailed getUsersNonDetailedInfo(Long id) {
+    public User getUsersNonDetailedInfo(Long id) {
         String sql = "SELECT id, name, surname FROM Persons WHERE id = ?";
         try {
             return jdbcTemplate.queryForObject(sql, new Object[]{id}, (resultSet, rowNum) -> {
-                UserNonDetailed user = new UserNonDetailed(
+                User user = new User(
                         resultSet.getLong("id"),
                         resultSet.getString("name"),
                         resultSet.getString("surname")
@@ -45,17 +45,17 @@ public class UserService implements UserRepository {
 
         try {
             return jdbcTemplate.queryForObject(sql, new Object[]{id}, (resultSet, rowNum) -> {
-                User user = new User();
-                user.setId(resultSet.getLong("id"));
-                user.setName(resultSet.getString("name"));
-                user.setSurname(resultSet.getString("surname"));
+                UserDetailed userDetailed = new UserDetailed();
+                userDetailed.setId(resultSet.getLong("id"));
+                userDetailed.setName(resultSet.getString("name"));
+                userDetailed.setSurname(resultSet.getString("surname"));
                 try {
-                    user.setPersonID(resultSet.getString("personID"));
+                    userDetailed.setPersonID(resultSet.getString("personID"));
                 } catch (UserException e) {
                     System.err.println(e.getLocalizedMessage());
                 }
-                user.setUuid(resultSet.getString("uuid").getBytes());
-                return user;
+                userDetailed.setUuid(resultSet.getString("uuid").getBytes());
+                return userDetailed;
             });
         } catch (EmptyResultDataAccessException e) {
             return null;
@@ -67,25 +67,25 @@ public class UserService implements UserRepository {
     public List<User> getUsersDetailedInfoList() {
         String sql = "SELECT id, name, surname, personID, uuid FROM Persons";
         return jdbcTemplate.query(sql, (resultSet, rowNum) -> {
-            User user = new User();
-            user.setId(resultSet.getLong("id"));
-            user.setName(resultSet.getString("name"));
-            user.setSurname(resultSet.getString("surname"));
+            UserDetailed userDetailed = new UserDetailed();
+            userDetailed.setId(resultSet.getLong("id"));
+            userDetailed.setName(resultSet.getString("name"));
+            userDetailed.setSurname(resultSet.getString("surname"));
             try {
-                user.setPersonID(resultSet.getString("personID"));
+                userDetailed.setPersonID(resultSet.getString("personID"));
             } catch (UserException e) {
                 System.err.println(e.getLocalizedMessage());
             }
-            user.setUuid(resultSet.getString("uuid").getBytes());
-            return user;
+            userDetailed.setUuid(resultSet.getString("uuid").getBytes());
+            return userDetailed;
         });
     }
 
     @Override
-    public List<UserNonDetailed> getUsersNonDetailedInfoList() {
+    public List<User> getUsersNonDetailedInfoList() {
         String sql = "SELECT id, name, surname FROM Persons";
         return jdbcTemplate.query(sql, (resultSet, rowNum) -> {
-                    UserNonDetailed user = new UserNonDetailed(
+                    User user = new User(
                             resultSet.getLong("id"),
                             resultSet.getString("name"),
                             resultSet.getString("surname")

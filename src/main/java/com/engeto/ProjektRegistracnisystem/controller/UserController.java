@@ -1,7 +1,7 @@
 package com.engeto.ProjektRegistracnisystem.controller;
 
+import com.engeto.ProjektRegistracnisystem.model.UserDetailed;
 import com.engeto.ProjektRegistracnisystem.model.User;
-import com.engeto.ProjektRegistracnisystem.model.UserNonDetailed;
 import com.engeto.ProjektRegistracnisystem.service.UserService;
 import com.engeto.ProjektRegistracnisystem.model.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,9 +36,9 @@ public class UserController {
 
     // Založení nového uživatele POST api/v1/user
     @PostMapping("/user")
-    public ResponseEntity<ApiResponse> addNewUser(@RequestBody User user) {
+    public ResponseEntity<ApiResponse> addNewUser(@RequestBody UserDetailed userDetailed) {
         try {
-            userService.createUser(new User(user.getName(), user.getSurname(), user.getPersonID()));
+            userService.createUser(new UserDetailed(userDetailed.getName(), userDetailed.getSurname(), userDetailed.getPersonID()));
             return ResponseEntity.status(HttpStatus.CREATED).body(CREATED);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(NOT_CREATED);
@@ -50,18 +50,18 @@ public class UserController {
         Informace o uživateli GET api/v1/users/{ID}?detail=true
         {id: string, name: string, surname: string, personID: string , uuid: string} */
     @GetMapping("/users/{id}")
-    public ResponseEntity<Object> getUserById(@PathVariable Long id, @RequestParam(required = false) boolean detail) {
+    public ResponseEntity<?> getUserById(@PathVariable Long id, @RequestParam(required = false) boolean detail) {
         if (detail) {
-            User user = userService.getUserDetailedInfo(id);
-            if (user != null) {
-                return ResponseEntity.ok(user);
+            User userDetailed = userService.getUserDetailedInfo(id);
+            if (userDetailed != null) {
+                return ResponseEntity.ok(userDetailed);
             } else {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(NOT_FOUND);
             }
         } else {
-            UserNonDetailed userNonDetailed = userService.getUsersNonDetailedInfo(id);
-            if (userNonDetailed != null) {
-                return ResponseEntity.ok(userNonDetailed);
+            User user = userService.getUsersNonDetailedInfo(id);
+            if (user != null) {
+                return ResponseEntity.ok(user);
             } else {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(NOT_FOUND);
             }
@@ -73,13 +73,13 @@ public class UserController {
        Informace o všech uživatelích GET api/v1/users?detail=true
        {id: string, name: string, surname: string, personID: string , uuid: string} */
     @GetMapping("/users")
-    public ResponseEntity<List<Object>> getUsersList(@RequestParam(required = false) boolean detail) {
-        List<UserNonDetailed> usersNonDetailedInfoList = userService.getUsersNonDetailedInfoList();
+    public ResponseEntity<List<User>> getUsersList(@RequestParam(required = false) boolean detail) {
+        List<User> usersNonDetailedInfoList = userService.getUsersNonDetailedInfoList();
         List<User> usersDetailedInfoList = userService.getUsersDetailedInfoList();
         if (!detail && !usersNonDetailedInfoList.isEmpty()) {
-            return ResponseEntity.ok(Collections.singletonList(usersNonDetailedInfoList));
+            return ResponseEntity.ok(usersNonDetailedInfoList);
         } else if (detail && !usersDetailedInfoList.isEmpty()) {
-            return ResponseEntity.ok(Collections.singletonList(usersDetailedInfoList));
+            return ResponseEntity.ok(usersDetailedInfoList);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
@@ -88,16 +88,14 @@ public class UserController {
     // Upravení informací o uživateli PUT api/v1/users/{ID}
     @PutMapping("/users/{id}")
     public ResponseEntity<ApiResponse> updateUser(@PathVariable Long id, @RequestBody User user) {
-        User userToUpdate = userService.getUserDetailedInfo(id);
+        User userToUpdate = userService.getUsersNonDetailedInfo(id);
         if (userToUpdate != null) {
             userToUpdate.setName(user.getName());
             userToUpdate.setSurname(user.getSurname());
             userService.updateUser(userToUpdate);
             return ResponseEntity.status(HttpStatus.OK).body(UPDATED);
-        } else if (userToUpdate == null){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(NOT_UPDATED);
         } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(NOT_UPDATED);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(NOT_UPDATED);
         }
     }
 

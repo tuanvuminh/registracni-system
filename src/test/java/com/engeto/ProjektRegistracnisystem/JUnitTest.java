@@ -3,6 +3,7 @@ package com.engeto.ProjektRegistracnisystem;
 import com.engeto.ProjektRegistracnisystem.controller.UserController;
 import com.engeto.ProjektRegistracnisystem.exception.UserException;
 import com.engeto.ProjektRegistracnisystem.model.User;
+import com.engeto.ProjektRegistracnisystem.model.UserDetailed;
 import com.engeto.ProjektRegistracnisystem.service.UserService;
 import com.engeto.ProjektRegistracnisystem.model.ApiResponse;
 import org.junit.jupiter.api.DisplayName;
@@ -13,7 +14,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import static com.engeto.ProjektRegistracnisystem.controller.UserController.*;
@@ -34,7 +34,7 @@ public class JUnitTest {
     @Test
     @DisplayName("Přidání uživatele s validním personID.")
     public void addUserWithValidPersonID() throws UserException {
-        User user = new User("Jake", "Sully", "jXa4g3H7oPq2");
+        UserDetailed user = new UserDetailed("Jake", "Sully", "jXa4g3H7oPq2");
         when(userService.createUser(any())).thenReturn(1);
 
         // Test
@@ -50,11 +50,11 @@ public class JUnitTest {
     @Test
     @DisplayName("Získání informací o uživateli pomocí ID.")
     public void getUsersInfoByExistingID() throws UserException {
-        User user = new User("Jake", "Sully", "jXa4g3H7oPq2");
+        UserDetailed user = new UserDetailed("Jake", "Sully", "jXa4g3H7oPq2");
         when(userService.getUserDetailedInfo(anyLong())).thenReturn(user);
 
         // Test
-        ResponseEntity<Object> test = userController.getUserById(1L, true);
+        ResponseEntity<?> test = userController.getUserById(1L, true);
 
         // Ověření
         assertEquals(HttpStatus.OK, test.getStatusCode());
@@ -69,7 +69,7 @@ public class JUnitTest {
         when(userService.getUserDetailedInfo(anyLong())).thenReturn(null);
 
         // Test
-        ResponseEntity<Object> test = userController.getUserById(1L, true);
+        ResponseEntity<?> test = userController.getUserById(1L, true);
 
         // Ověření
         assertEquals(HttpStatus.NOT_FOUND, test.getStatusCode());
@@ -82,15 +82,15 @@ public class JUnitTest {
     @DisplayName("Získání seznamu uživatelů, kteří jsou v databázi.")
     public void getUsersList() throws UserException {
         List<User> userList = new ArrayList<>();
-        userList.add(new User("Jake", "Sully", "jXa4g3H7oPq2"));
+        userList.add(new UserDetailed("Jake", "Sully", "jXa4g3H7oPq2"));
         when(userService.getUsersDetailedInfoList()).thenReturn(userList);
 
         // Test
-        ResponseEntity<List<Object>> test = userController.getUsersList(true);
+        ResponseEntity<List<User>> test = userController.getUsersList(true);
 
         // Ověření
         assertEquals(HttpStatus.OK, test.getStatusCode());
-        assertEquals(Collections.singletonList(userList), test.getBody());  // Zde upravená aserce
+        assertEquals(userList, test.getBody());
 
         verify(userService, times(1)).getUsersDetailedInfoList();
     }
@@ -99,7 +99,7 @@ public class JUnitTest {
     @DisplayName("Aktualizování informací uživatele, který je v databázi.")
     public void updateUser() throws UserException {
         User existingUser = new User(1l, "Jake", "Sully");
-        when(userService.getUserDetailedInfo(anyLong())).thenReturn(existingUser);
+        when(userService.getUsersNonDetailedInfo(anyLong())).thenReturn(existingUser);
 
         // Test
         User updatedUserData = new User(1L,"John", "Smith");
@@ -109,14 +109,15 @@ public class JUnitTest {
         assertEquals(HttpStatus.OK, test.getStatusCode());
         assertEquals(UPDATED, test.getBody());
 
-        verify(userService, times(1)).getUserDetailedInfo(anyLong());
+        verify(userService, times(1)).getUsersNonDetailedInfo(anyLong());
         verify(userService, times(1)).updateUser(any());
     }
+
 
     @Test
     @DisplayName("Aktualizování informací uživatele, který není v databázi.")
     public void updateNonExistingUser() throws UserException {
-        when(userService.getUserDetailedInfo(anyLong())).thenReturn(null);
+        when(userService.getUsersNonDetailedInfo(anyLong())).thenReturn(null);
 
         // Test
         User updatedUserData = new User(50L,"John", "Smith");
@@ -126,7 +127,7 @@ public class JUnitTest {
         assertEquals(HttpStatus.NOT_FOUND, test.getStatusCode());
         assertEquals(NOT_UPDATED, test.getBody());
 
-        verify(userService, times(1)).getUserDetailedInfo(anyLong());
+        verify(userService, times(1)).getUsersNonDetailedInfo(anyLong());
         verify(userService, never()).updateUser(any());
     }
 
