@@ -30,43 +30,36 @@ Pro každý nový záznam musí být vygenerovaný ještě UUID, což bude dalš
 
 - [ ] Dostat informace o jednom uživateli je možné přes api: GET api/v1/user/{ID}
 
-- [ ] Tento request vrátí následující objekt:
+- [ ] Request vrátí následující objekt:
 
 {id: string, name: string, surname: string }
 
-- [ ] Ještě existuje varianta api/v1/users/{ID}?detail=true
-- [ ] Kdy request vrátí rozšířený objekt:
+- [ ] Varianta api/v1/users/{ID}?detail=true
+- [ ] Request vrátí rozšířený objekt:
 
 {id: string, name: string, surname: string, personID: string , uuid: string  }
 
 # Informace o všech uživatelích
 
-- [ ] Dostat informace o jednom uživateli je možné přes api: GET api/v1/users
+- [ ] GET api/v1/users
 
-- [ ] Tento request vrátí následující objekt:
+- [ ] Request vrátí následující objekt:
 
-List <{id: string, name: string, surname: string }>
+List {id: string, name: string, surname: string }
 
-- [ ] Varianta api/v1/users?detail=true
+- [ ] Varianta GET api/v1/users?detail=true
+
 - [ ] Request vrátí rozšířený objekt:
 
-{id: string, name: string, surname: string, personID: string , uuid: string  }
+List {id: string, name: string, surname: string, personID: string , uuid: string  }
 
 # Upravit informace o uživateli
-- [ ] Varianta PUT api/v1/user
-
-List <{id: string, name: string, surname: string }>
-
-- [ ] Varianta api/v1/users?detail=true
-- [ ] Request vrátí rozšířený objekt:
-
-{id: string, name: string, surname: string, personID: string , uuid: string  }
+- [ ] PUT api/v1/user
 
 # Smazat uživatele
 - [ ] Varianta DELETE api/v1/user/{ID}
 
 # Požadavky na databázi
-
 Struktura
 
 Jméno sloupce	  - [ ] -      Typ	       - [ ] -          Další info
