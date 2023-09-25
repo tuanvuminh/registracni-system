@@ -1,7 +1,7 @@
 # Registrační systém
 Obrací se na tebe správní rada společnosti Genesis Resources. Tvým úkolem je vytvořit pro ni registrační systém, aby mohla suroviny distribuovat opravdu spravedlivě.
 
-Naše zadání projektu:
+Zadání projektu:
 
 1. Aplikace bude obsahovat REST rozhraní
 2. Data se budou ukládat do databáze
@@ -32,13 +32,10 @@ Pro každý nový záznam musí být vygenerovaný ještě UUID, což bude dalš
 
 - [ ] Tento request vrátí následující objekt:
 
-
 {id: string, name: string, surname: string }
-
 
 - [ ] Ještě existuje varianta api/v1/users/{ID}?detail=true
 - [ ] Kdy request vrátí rozšířený objekt:
-
 
 {id: string, name: string, surname: string, personID: string , uuid: string  }
 
@@ -48,33 +45,25 @@ Pro každý nový záznam musí být vygenerovaný ještě UUID, což bude dalš
 
 - [ ] Tento request vrátí následující objekt:
 
-
 List <{id: string, name: string, surname: string }>
 
-
-- [ ] Ještě existuje varianta api/v1/users?detail=true
-- [ ] Kdy request vrátí rozšířený objekt:
-
+- [ ] Varianta api/v1/users?detail=true
+- [ ] Request vrátí rozšířený objekt:
 
 {id: string, name: string, surname: string, personID: string , uuid: string  }
 
 # Upravit informace o uživateli
-- [ ] Ještě existuje varianta PUT api/v1/user
-
-
+- [ ] Varianta PUT api/v1/user
 
 List <{id: string, name: string, surname: string }>
 
-
-- [ ] Ještě existuje varianta api/v1/users?detail=true
-- [ ] Kdy request vrátí rozšířený objekt:
-
-
+- [ ] Varianta api/v1/users?detail=true
+- [ ] Request vrátí rozšířený objekt:
 
 {id: string, name: string, surname: string, personID: string , uuid: string  }
 
 # Smazat uživatele
-- [ ] Ještě existuje varianta DELETE api/v1/user/{ID}
+- [ ] Varianta DELETE api/v1/user/{ID}
 
 # Požadavky na databázi
 
