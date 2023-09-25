@@ -56,20 +56,6 @@ List {id: string, name: string, surname: string, personID: string , uuid: string
 # Smazat uživatele
 - [ ] DELETE api/v1/user/{ID}
 
-# Požadavky na databázi
-
-Jméno sloupce	  - [ ] -      Typ	       - [ ] -          Další info
-
-ID	            - [ ] -      Long	     - [ ] -        PrimaryKey, Unique, NotNull, Autoincrement
-
-Name	          - [ ] -      Varchar    - [ ] -        NotNull
-
-Surname	        - [ ] -     Varchar	  - [ ] -          NotNull
-
-PersonID	      - [ ] -      Varchar	   - [ ] -      Unique, NotNull
-
-Uuid	          - [ ] -      Varchar	   - [ ] -    Unique, NotNull
-
 # Doplňující možnosti
 - [ ] logovací framework
 - [ ] front-end
