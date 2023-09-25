@@ -76,7 +76,7 @@ List <{id: string, name: string, surname: string }>
 # Smazat uživatele
 - [ ] Ještě existuje varianta DELETE api/v1/user/{ID}
 
-# POŽADAVKY NA DATABÁZI
+# Požadavky na databázi
 
 Struktura
 
@@ -92,7 +92,7 @@ PersonID	      - [ ] -      Varchar	   - [ ] -      Unique, NotNull
 
 Uuid	          - [ ] -      Varchar	   - [ ] -    Unique, NotNull
 
-# DOPLŇUJÍCÍ MOŽNOSTI
+# Doplňující možnosti
 - [ ] logovací framework
 - [ ] front-end
 - [ ] JUnit
