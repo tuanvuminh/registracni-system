@@ -17,7 +17,6 @@ Zadání projektu:
 - [ ] smazat uživatele
 # Založení nového uživatele
 - [ ] POST api/v1/user
-
 - [ ] Informace o novém uživateli budou předány skrz objekt
 
 { name: string, surname: string, personID: string(12) }
@@ -30,7 +29,6 @@ Pro každý nový záznam musí být vygenerovaný ještě UUID, což bude dalš
 # Informace o uživateli
 
 - [ ] GET api/v1/user/{ID}
-
 - [ ] Request vrátí následující objekt:
 
 {id: string, name: string, surname: string }
@@ -43,13 +41,11 @@ Pro každý nový záznam musí být vygenerovaný ještě UUID, což bude dalš
 # Informace o všech uživatelích
 
 - [ ] GET api/v1/users
-
 - [ ] Request vrátí následující objekt:
 
 List {id: string, name: string, surname: string }
 
 - [ ] GET api/v1/users?detail=true
-
 - [ ] Request vrátí rozšířený objekt:
 
 List {id: string, name: string, surname: string, personID: string , uuid: string  }
@@ -61,6 +57,7 @@ List {id: string, name: string, surname: string, personID: string , uuid: string
 - [ ] DELETE api/v1/user/{ID}
 
 # Požadavky na databázi
+
 Jméno sloupce	  - [ ] -      Typ	       - [ ] -          Další info
 
 ID	            - [ ] -      Long	     - [ ] -        PrimaryKey, Unique, NotNull, Autoincrement
