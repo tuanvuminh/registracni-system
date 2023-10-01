@@ -48,7 +48,7 @@ public class UserController {
     /*  Informace o uživateli GET api/v1/users/{ID}
         {id: string, name: string, surname: string}
         Informace o uživateli GET api/v1/users/{ID}?detail=true
-        {id: string, name: string, surname: string, personID: string , uuid: string} */
+        {id: string, name: string, surname: string, personID: string, uuid: string} */
     @GetMapping("/users/{id}")
     public ResponseEntity<?> getUserById(@PathVariable Long id, @RequestParam(required = false) boolean detail) {
         if (detail) {
@@ -71,7 +71,7 @@ public class UserController {
     /* Informace o všech uživatelích GET api/v1/users
        {id: string, name: string, surname: string}
        Informace o všech uživatelích GET api/v1/users?detail=true
-       {id: string, name: string, surname: string, personID: string , uuid: string} */
+       {id: string, name: string, surname: string, personID: string, uuid: string} */
     @GetMapping("/users")
     public ResponseEntity<List<User>> getUsersList(@RequestParam(required = false) boolean detail) {
         List<User> usersNonDetailedInfoList = userService.getUsersNonDetailedInfoList();
