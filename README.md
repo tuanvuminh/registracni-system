@@ -50,10 +50,10 @@ List {id: string, name: string, surname: string }
 
 List {id: string, name: string, surname: string, personID: string , uuid: string  }
 
-# Upravit informace o uživateli
+# Upravení informací uživatele
 - [ ] PUT api/v1/user
 
-# Smazat uživatele
+# Smazání uživatele
 - [ ] DELETE api/v1/user/{ID}
 
 # Doplňující možnosti
